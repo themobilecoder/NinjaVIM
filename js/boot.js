@@ -12,7 +12,7 @@ Game.prototype = {
         this.game.load.image('dude', 'assets/star.png', 0, 0);
     },
     create: function () {
-        this.game.stage.backgroundColor = '#CDCDCD';
+        this.game.stage.backgroundColor = '#FFFFFF';
 
         this.tiles = this.game.add.group();
         this.createTiles()
@@ -50,7 +50,7 @@ Game.prototype = {
                 var tile = this.game.add.bitmapData(this.tile_width, this.tile_height);
                 tile.alpha = 1;
                 tile.ctx.rect(0, 0, this.tile_width, this.tile_height);
-                tile.ctx.fillStyle = '#CC0000';
+                tile.ctx.fillStyle = '#FFFFFF';
                 tile.ctx.globalAlpha = 0.2;
                 tile.ctx.fill();
 
