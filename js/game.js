@@ -17,22 +17,26 @@ Game.prototype = {
         this.tiles = this.game.add.group();
         this.createTiles()
 
-        var rightKey = this.game.input.keyboard.addKey(Phaser.KeyCode.RIGHT);
+        var rightKey = this.game.input.keyboard.addKey(Phaser.KeyCode.L);
         rightKey.onDown.add(function () {
             this.player.x = this.player.x + this.tile_width;
         }, this);
 
-        var leftKey = this.game.input.keyboard.addKey(Phaser.KeyCode.LEFT);
+        var leftKey = this.game.input.keyboard.addKey(Phaser.KeyCode.H);
         leftKey.onDown.add(function () {
             this.player.x = this.player.x - this.tile_width;
         }, this);
 
-        var upKey = this.game.input.keyboard.addKey(Phaser.KeyCode.UP);
+        var upKey = this.game.input.keyboard.addKey(Phaser.KeyCode.K);
         upKey.onDown.add(function () {
-            this.player.y = this.player.y - this.tile_height;
+            console.log("Pressed K");
+            console.log(this);
+            if (upKey.shiftKey) {
+                this.player.y = this.player.y - this.tile_height;
+            }
         }, this);
 
-        var downKey = this.game.input.keyboard.addKey(Phaser.KeyCode.DOWN);
+        var downKey = this.game.input.keyboard.addKey(Phaser.KeyCode.J);
         downKey.onDown.add(function () {
             this.player.y = this.player.y + this.tile_height;
         }, this);
@@ -67,6 +71,10 @@ Game.prototype = {
     },
     getRandomLetter: function() {
         return String.fromCharCode(97 + Math.floor(Math.random() * 26));
+
+    },
+
+    update: function() {
 
     }
 }
