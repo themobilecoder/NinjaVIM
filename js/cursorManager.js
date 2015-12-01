@@ -17,7 +17,23 @@ CursorManager.prototype = {
     },
     getCursor: function() {
         return this.cursor;
-    }
+    },
+    moveCursorTo: function(x, y) {
+        this.cursor.x = x * this.cursor.width;
+        this.cursor.y = y * this.cursor.height;
+    },
+    moveCursorUp: function() {
+        this.cursor.y = this.cursor.y - this.cursor.height;
+    },
+    moveCursorDown: function() {
+        this.cursor.y = this.cursor.y + this.cursor.height;
+    },
+    moveCursorLeft: function() {
+        this.cursor.x = this.cursor.x - this.cursor.width;
+    },
+    moveCursorRight: function() {
+        this.cursor.x = this.cursor.x + this.cursor.width;
+    },
 
 }
 

@@ -26,22 +26,22 @@ Game.prototype = {
     setupKeyboardHandling: function () {
         var rightKey = this.game.input.keyboard.addKey(Phaser.KeyCode.L);
         rightKey.onDown.add(function () {
-            this.cursor.x = this.cursor.x + this.tile_width;
+            this.cursorManager.moveCursorRight();
         }, this);
 
         var leftKey = this.game.input.keyboard.addKey(Phaser.KeyCode.H);
         leftKey.onDown.add(function () {
-            this.cursor.x = this.cursor.x - this.tile_width;
+            this.cursorManager.moveCursorLeft();
         }, this);
 
         var upKey = this.game.input.keyboard.addKey(Phaser.KeyCode.K);
         upKey.onDown.add(function () {
-            this.cursor.y = this.cursor.y - this.tile_height;
+            this.cursorManager.moveCursorUp();
         }, this);
 
         var downKey = this.game.input.keyboard.addKey(Phaser.KeyCode.J);
         downKey.onDown.add(function () {
-            this.cursor.y = this.cursor.y + this.tile_height;
+            this.cursorManager.moveCursorDown();
         }, this);
     },
     createTiles: function () {
