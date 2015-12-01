@@ -7,13 +7,15 @@ Game.prototype = {
         this.grid_columns = 20;
         this.tile_width = this.game.world.width / this.grid_rows;
         this.tile_height = this.game.world.height / this.grid_columns;
+        this.tiles = {};
     },
     preload: function () {
         this.game.load.image('cursor', 'assets/star.png', 0, 0);
         this.game.stage.backgroundColor = '#FFFFFF';
     },
     create: function () {
-        this.tiles = this.game.add.group();
+        //this.tiles = this.game.add.group();
+        this.tileManager = new TilesManager(this.game, this.grid_rows, this.grid_columns, this.tiles);
         this.createTiles();
         this.setupKeyboardHandling();
 
@@ -45,8 +47,7 @@ Game.prototype = {
         }, this);
     },
     createTiles: function () {
-        var tileManager = new TilesManager(this.game, this.grid_rows, this.grid_columns);
-        tileManager.draw();
+        this.tileManager.init();
     },
     update: function () {
 

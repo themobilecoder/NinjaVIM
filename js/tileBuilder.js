@@ -11,12 +11,13 @@ TileBuilder = function (game, width, height) {
 TileBuilder.prototype = {
     setLetter: function (letter) {
         this.letter = letter;
+        return this;
     },
     build: function () {
         this.tile = this.game.add.bitmapData(this.width, this.height);
         this.tile.alpha = 1;
         this.tile.ctx.rect(0, 0, this.width, this.height);
-        this.tile.ctx.fillStyle = '#552266';
+        this.tile.ctx.fillStyle = '#DDDDDD';
         this.tile.ctx.globalAlpha = 0.2;
         this.tile.ctx.fill();
 
