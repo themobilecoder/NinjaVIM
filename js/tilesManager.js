@@ -13,7 +13,6 @@ TilesManager = function (game, maxColumns, maxRows, tiles, builder) {
 
 TilesManager.prototype = {
     init: function () {
-        console.log(this.tiles);
         for (var x = 0; x < this.columns; ++x) {
             for (var y = 0; y < this.rows; ++y) {
                 this.update("", x, y);
