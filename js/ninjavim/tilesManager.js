@@ -28,6 +28,10 @@ TilesManager.prototype = {
         this.tiles[key] = tile;
         return tile;
     },
+    getLetterFromColumn: function (column, row) {
+        var key = this.getKey(column, row);
+        return this.tiles[key].letter;
+    },
     draw: function (tile, column, row) {
         this.tilesContainer.create(column * this.tileWidth, row * this.tileHeight, tile);
     },

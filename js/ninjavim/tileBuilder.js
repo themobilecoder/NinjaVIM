@@ -21,6 +21,7 @@ TileBuilder.prototype = {
         this.tile.ctx.globalAlpha = 0.2;
         this.tile.ctx.fill();
 
+        this.tile.letter = this.letter;
         this.tile.ctx.font = this.letterSize + ' ' + this.font;
         this.tile.ctx.textAlign = 'center';
         this.tile.ctx.textBaseline = 'middle';

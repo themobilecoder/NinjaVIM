@@ -15,8 +15,11 @@ CursorManager.prototype = {
         this.cursor.width = width;
         this.cursor.height = height;
     },
-    getCursor: function() {
-        return this.cursor;
+    getCurrentColumnLocation: function() {
+        return Math.floor(this.cursor.x * this.cursor.width);
+    },
+    getCurrentRowLocation: function() {
+        return Math.floor(this.cursor.y * this.cursor.height);
     },
     moveCursorTo: function(column, row) {
         this.cursor.x = column * this.cursor.width;
