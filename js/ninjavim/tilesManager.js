@@ -13,22 +13,23 @@ TilesManager = function (game, maxColumns, maxRows, tiles, builder) {
 
 TilesManager.prototype = {
     init: function () {
-        for (var x = 0; x < this.columns; ++x) {
-            for (var y = 0; y < this.rows; ++y) {
-                this.update("", x, y);
+        for (var column = 0; column < this.columns; ++column) {
+            for (var row = 0; row < this.rows; ++row) {
+                var tile = this.setLetterToColumn("", column, row);
+                this.draw(tile, column, row);
             }
         }
     },
-    update: function (letter, x, y) {
+    setLetterToColumn: function (letter, column, row) {
         var tile = this.builder.setLetter(letter).build();
-        var key = this.getKey(x, y);
+        var key = this.getKey(column, row);
         var currentTile = this.tiles[key];
         if (currentTile != undefined) currentTile.clear();
         this.tiles[key] = tile;
-        this.draw(tile, x, y);
+        return tile;
     },
-    draw: function (tile, x, y) {
-        this.tilesContainer.create(x * this.tileWidth, y * this.tileHeight, tile);
+    draw: function (tile, column, row) {
+        this.tilesContainer.create(column * this.tileWidth, row * this.tileHeight, tile);
     },
     getKey: function (column, row) {
         if (parseInt(column) >= 0 && parseInt(column) < 100 && parseInt(row) >= 0 && parseInt(column) < 100) {

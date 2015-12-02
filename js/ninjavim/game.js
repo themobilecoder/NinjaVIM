@@ -20,8 +20,6 @@ Game.prototype = {
         this.setupKeyboardHandling();
 
         this.cursorManager.createSprite(this.tile_width, this.tile_height);
-        this.cursor = this.cursorManager.getCursor();
-
     },
     setupKeyboardHandling: function () {
         var rightKey = this.game.input.keyboard.addKey(Phaser.KeyCode.L);

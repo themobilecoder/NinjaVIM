@@ -18,9 +18,9 @@ CursorManager.prototype = {
     getCursor: function() {
         return this.cursor;
     },
-    moveCursorTo: function(x, y) {
-        this.cursor.x = x * this.cursor.width;
-        this.cursor.y = y * this.cursor.height;
+    moveCursorTo: function(column, row) {
+        this.cursor.x = column * this.cursor.width;
+        this.cursor.y = row * this.cursor.height;
     },
     moveCursorUp: function() {
         this.cursor.y = this.cursor.y - this.cursor.height;
