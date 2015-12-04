@@ -1,42 +1,48 @@
 var CursorManager = CursorManager || {};
 
-CursorManager = function(game) {
+CursorManager = function (game) {
     this.game = game;
     this.cursor = {};
+    this.currentCursorLocation = {column: 0, row: 0};
 };
 
 CursorManager.prototype = {
-    loadAsset: function() {
+    loadAsset: function () {
         this.game.load.image('cursor', 'assets/star.png', 0, 0);
     },
-    createSprite: function(width, height) {
+    createSprite: function (width, height) {
         this.cursor = this.game.add.sprite(0, 0, 'cursor');
         this.cursor.alpha = 0.7;
         this.cursor.width = width;
         this.cursor.height = height;
     },
-    getCurrentColumnLocation: function() {
-        return Math.floor(this.cursor.x * this.cursor.width);
+    getCursorLocation: function () {
+        return this.currentCursorLocation;
     },
-    getCurrentRowLocation: function() {
-        return Math.floor(this.cursor.y * this.cursor.height);
+    moveCursorTo: function (column, row) {
+        this.currentCursorLocation = {column: column, row: row};
+        this._drawCursor();
     },
-    moveCursorTo: function(column, row) {
-        this.cursor.x = column * this.cursor.width;
-        this.cursor.y = row * this.cursor.height;
+    moveCursorUp: function () {
+        --this.currentCursorLocation.row;
+        this._drawCursor();
     },
-    moveCursorUp: function() {
-        this.cursor.y = this.cursor.y - this.cursor.height;
+    moveCursorDown: function () {
+        ++this.currentCursorLocation.row;
+        this._drawCursor();
     },
-    moveCursorDown: function() {
-        this.cursor.y = this.cursor.y + this.cursor.height;
+    moveCursorLeft: function () {
+        --this.currentCursorLocation.column;
+        this._drawCursor();
     },
-    moveCursorLeft: function() {
-        this.cursor.x = this.cursor.x - this.cursor.width;
+    moveCursorRight: function () {
+        ++this.currentCursorLocation.column;
+        this._drawCursor();
     },
-    moveCursorRight: function() {
-        this.cursor.x = this.cursor.x + this.cursor.width;
-    },
+    _drawCursor: function () {
+        this.cursor.x = this.currentCursorLocation.column * this.cursor.width;
+        this.cursor.y = this.currentCursorLocation.row * this.cursor.height;
+    }
 
-}
+};
 
