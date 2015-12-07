@@ -18,18 +18,19 @@ Game.prototype = {
         this.cursorManager.loadAsset();
     },
     create: function () {
-        this.tileManager = new TilesManager(this.game, this.grid_rows, this.grid_columns, this.tiles);
-        this.createTiles();
-        var phaserKeyboard = new PhaserKeyboard(this.game);
-        this.keyboardHandlerManager.setKeyboard(phaserKeyboard);
-        var normalModeKeyboardHandler = new NormalModeKeyboardHandler(this.vimEngine);
-        this.keyboardHandlerManager.setKeyHandlers(normalModeKeyboardHandler);
+        this._createTiles();
+        this._setupKeyboard();
         this.cursorManager.createSprite(this.tile_width, this.tile_height);
-    },
-    createTiles: function () {
-        this.tileManager.init();
     },
     update: function () {
 
+    },
+    _createTiles: function () {
+        this.tilesManager = new TilesManager(this.game, this.grid_rows, this.grid_columns, this.tiles);
+        this.tilesManager.init();
+    },
+    _setupKeyboard: function () {
+        this.keyboardHandlerManager.setKeyboard(new PhaserKeyboard(this.game));
+        this.keyboardHandlerManager.setKeyHandlers(new NormalModeKeyboardHandler(this.vimEngine));
     }
 };
