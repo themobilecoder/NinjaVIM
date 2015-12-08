@@ -20,3 +20,11 @@ QUnit.test('VimEngine should handle movement inputs in NORMAL mode', function (a
    vimEngine.processCommand(rightCommand);
    assert.deepEqual(vimEngine.getCursorManager().getCursorLocation(), {column: 5, row: 5}, 'Cursor should have moved right');
 });
+
+QUnit.test('VimEngine should allow mode changing', function(assert) {
+    var vimEngine = new VimEngine();
+    assert.equal(vimEngine.getCurrentMode(), VimEngine.MODES.NORMAL, 'VimEngine should be in NORMAL mode by default');
+
+    vimEngine.setCurrentMode(VimEngine.MODES.INSERT, 'VimEngine should be able to change modes');
+    assert.equal(vimEngine.getCurrentMode(), VimEngine.MODES.INSERT, 'VimEngine should be in NORMAL mode by default');
+});
