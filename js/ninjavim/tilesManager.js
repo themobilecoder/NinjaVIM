@@ -30,7 +30,7 @@ TilesManager.prototype = {
         this.tiles[key] = tile;
         return tile;
     },
-    getLetterFromColumn: function (column, row) {
+    getLetterFromLocation: function (column, row) {
         var key = this._getKey(column, row);
         var tileInColumnRow = this.tiles[key];
         return tileInColumnRow != undefined ? tileInColumnRow.letter : '';
