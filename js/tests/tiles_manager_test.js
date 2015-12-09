@@ -2,7 +2,7 @@ var maxColumns = 20;
 var maxRows = 20;
 
 QUnit.test("TilesManager should update letters in tiles", function(assert){
-    var tilesManager = new TilesManager(gameStub, maxColumns, maxRows, {}, builderStub);
+    var tilesManager = new TilesManager(gameStub, maxColumns, maxRows, builderStub);
     assert.equal(tilesManager.tiles[tilesManager._getKey(0,0)], undefined, "Tiles should undefined" );
     tilesManager.setLetterToColumn('A',0,0);
     assert.equal(tilesManager.getLetterFromLocation(0,0), 'A', "Letter should have been set");
@@ -11,7 +11,7 @@ QUnit.test("TilesManager should update letters in tiles", function(assert){
 });
 
 QUnit.test("TilesManager should prevent set letter at the edge when input is outside the boundary", function(assert) {
-    var tilesManager = new TilesManager(gameStub, maxColumns, maxRows, {}, builderStub);
+    var tilesManager = new TilesManager(gameStub, maxColumns, maxRows, builderStub);
 
     var oneColumnPastTheBoundary = 20;
     tilesManager.setLetterToColumn('L', oneColumnPastTheBoundary, 0);

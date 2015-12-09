@@ -1,7 +1,7 @@
 var TilesManager = TilesManager || {};
 
-TilesManager = function (game, maxColumns, maxRows, tiles, builder) {
-    this.tiles = tiles;
+TilesManager = function (game, maxColumns, maxRows, builder) {
+    this.tiles = {};
     this.game = game;
     this.columns = maxColumns;
     this.rows = maxRows;

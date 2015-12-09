@@ -8,7 +8,6 @@ Game.prototype = {
         this.grid_columns = 20;
         this.tile_width = this.game.world.width / this.grid_rows;
         this.tile_height = this.game.world.height / this.grid_columns;
-        this.tiles = {};
         this.cursorManager = new CursorManager(this.game);
         this.vimEngine = new VimEngine(this.cursorManager);
         this.keyboardHandlerManager = new KeyboardHandlerManager(this.context);
@@ -26,7 +25,7 @@ Game.prototype = {
 
     },
     _createTiles: function () {
-        this.tilesManager = new TilesManager(this.game, this.grid_rows, this.grid_columns, this.tiles);
+        this.tilesManager = new TilesManager(this.game, this.grid_rows, this.grid_columns);
         this.tilesManager.init();
     },
     _setupKeyboard: function () {
