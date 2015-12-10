@@ -1,10 +1,8 @@
-var CursorManager = CursorManager || {};
-
-CursorManager = function (game) {
+function CursorManager(game) {
     this.game = game;
     this.cursor = {};
     this.currentCursorLocation = {column: 0, row: 0};
-};
+}
 
 CursorManager.prototype = {
     loadAsset: function () {

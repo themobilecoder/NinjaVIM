@@ -1,5 +1,8 @@
- function VimEngine(cursorManager) {
-    this.cursorManager = cursorManager;
+var NinjaVim = NinjaVim || {};
+
+function VimEngine(cursorManager) {
+    NinjaVim.CursorManager = cursorManager;
+    this.cursorManager = NinjaVim.CursorManager;
     this.currentMode = VimEngine.MODES.NORMAL;
 }
 
