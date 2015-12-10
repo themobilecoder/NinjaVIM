@@ -1,8 +1,7 @@
-var VimCommand = VimCommand || {};
 function VimCommand() {
     this.TYPE = VimCommand.TYPE.UNKNOWN;
     this.cursorManager = null;
-};
+}
 VimCommand.TYPE = {
     UNKNOWN: 'UNKNOWN',
     MOVE_UP: 'MOVE_UP',
@@ -21,7 +20,7 @@ VimCommand.prototype.setCursorManager = function(cursorManager) {
 
 function MoveUpCommand(){
     this.TYPE = VimCommand.TYPE.MOVE_UP;
-};
+}
 MoveUpCommand.prototype = new VimCommand();
 MoveUpCommand.prototype.execute = function(){
     this.cursorManager.moveCursorUp();
@@ -29,7 +28,7 @@ MoveUpCommand.prototype.execute = function(){
 
 function MoveDownCommand() {
     this.TYPE = VimCommand.TYPE.MOVE_DOWN;
-};
+}
 MoveDownCommand.prototype = new VimCommand();
 MoveDownCommand.prototype.execute = function(){
     this.cursorManager.moveCursorDown();
@@ -37,7 +36,7 @@ MoveDownCommand.prototype.execute = function(){
 
 function MoveLeftCommand() {
     this.TYPE = VimCommand.TYPE.MOVE_LEFT;
-};
+}
 MoveLeftCommand.prototype = new VimCommand();
 MoveLeftCommand.prototype.execute = function(){
     this.cursorManager.moveCursorLeft();
@@ -45,7 +44,7 @@ MoveLeftCommand.prototype.execute = function(){
 
 function MoveRightCommand() {
     this.TYPE = VimCommand.TYPE.MOVE_RIGHT;
-};
+}
 MoveRightCommand.prototype = new VimCommand();
 MoveRightCommand.prototype.execute = function(){
     this.cursorManager.moveCursorRight();

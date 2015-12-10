@@ -1,9 +1,7 @@
-var VimEngine = VimEngine || {};
-
-VimEngine = function(cursorManager) {
+ function VimEngine(cursorManager) {
     this.cursorManager = cursorManager;
     this.currentMode = VimEngine.MODES.NORMAL;
-};
+}
 
 VimEngine.MODES = {
     NORMAL: 'NORMAL',

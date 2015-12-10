@@ -1,8 +1,8 @@
-var NormalModeKeyboardHandler = function (vimEngine) {
+function NormalModeKeyboardHandler(vimEngine) {
     this.vimEngine = vimEngine;
     this.keyHandlers = {};
     this._init();
-};
+}
 NormalModeKeyboardHandler.prototype = {
     getHandlers: function () {
         return this.keyHandlers;

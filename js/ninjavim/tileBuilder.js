@@ -1,5 +1,4 @@
-var TileBuilder = TileBuilder || {};
-TileBuilder = function (game, width, height) {
+ function TileBuilder(game, width, height) {
     this.game = game;
     this.tile = {};
     this.letter = '';
@@ -7,7 +6,7 @@ TileBuilder = function (game, width, height) {
     this.font = 'Arial';
     this.width = width;
     this.height = height;
-};
+}
 TileBuilder.prototype = {
     setLetter: function (letter) {
         this.letter = letter;

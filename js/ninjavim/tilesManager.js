@@ -1,6 +1,4 @@
-var TilesManager = TilesManager || {};
-
-TilesManager = function (game, maxColumns, maxRows, builder) {
+ function TilesManager(game, maxColumns, maxRows, builder) {
     this.tiles = {};
     this.game = game;
     this.columns = maxColumns;

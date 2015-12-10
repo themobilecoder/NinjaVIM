@@ -1,11 +1,9 @@
-var KeyboardHandlerManager = KeyboardHandlerManager = {};
-
-KeyboardHandlerManager = function (game) {
+function KeyboardHandlerManager(game) {
     this.context = game;
     this.game = this.context.game;
     this.keys = {};
     this.keyHandlers = {};
-};
+}
 
 KeyboardHandlerManager.prototype = {
     setKeyboard: function (keyboard) {
