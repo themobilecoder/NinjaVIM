@@ -1,9 +1,22 @@
 var NinjaVim = NinjaVim || {};
 
-function VimEngine(cursorManager) {
-    NinjaVim.CursorManager = cursorManager;
-    this.cursorManager = NinjaVim.CursorManager;
+function VimEngine(cursorManager, tilesManager) {
     this.currentMode = VimEngine.MODES.NORMAL;
+
+    this.cursorManager = {};
+    this.tilesManager = {};
+    _pointManagersToGlobal(this.cursorManager, this.tilesManager);
+    _setDefaultManagers(this, cursorManager, tilesManager);
+
+    function _pointManagersToGlobal(self) {
+        self.cursorManager = NinjaVim.CursorManager;
+        self.tilesManager = NinjaVim.TilesManager;
+    }
+    function _setDefaultManagers(self, cursorManager, tilesManager) {
+        self.cursorManager = cursorManager;
+        self.tilesManager = tilesManager;
+    }
+
 }
 
 VimEngine.MODES = {
