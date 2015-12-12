@@ -12,17 +12,17 @@ VimEngine.MODES = {
 };
 
 VimEngine.prototype = {
-    processCommand: function(command) {
+    processCommand: function (command) {
         command.setCursorManager(this.cursorManager);
         command.execute();
     },
-    getCursorManager: function() {
+    getCursorManager: function () {
         return this.cursorManager;
     },
-    setCurrentMode: function(currentMode) {
+    setCurrentMode: function (currentMode) {
         this.currentMode = currentMode;
     },
-    getCurrentMode: function() {
+    getCurrentMode: function () {
         return this.currentMode;
     }
 };

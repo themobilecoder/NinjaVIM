@@ -1,4 +1,4 @@
- function TilesManager(game, maxColumns, maxRows, builder) {
+function TilesManager(game, maxColumns, maxRows, builder) {
     this.tiles = {};
     this.game = game;
     this.columns = maxColumns;
@@ -7,7 +7,7 @@
     this.tileHeight = game.world.height / maxRows;
     this.builder = builder || new TileBuilder(game, this.tileWidth, this.tileHeight);
     this.tilesContainer = this.game.add.group();
-};
+}
 
 TilesManager.prototype = {
     init: function () {
@@ -38,12 +38,20 @@ TilesManager.prototype = {
     },
     _getKey: function (column, row) {
         if (parseInt(column) >= 0 && parseInt(column) < 100 && parseInt(row) >= 0 && parseInt(column) < 100) {
-            if(column < 10) {column = '0' + column.toString()} else {column = column.toString();}
-            if(row < 0) {row = '0' + column.toString()} else {row = row.toString();}
+            if (column < 10) {
+                column = '0' + column.toString()
+            } else {
+                column = column.toString();
+            }
+            if (row < 0) {
+                row = '0' + column.toString()
+            } else {
+                row = row.toString();
+            }
             return column + row;
         }
     },
-    _normalizeInputColumn: function(column) {
+    _normalizeInputColumn: function (column) {
         if (column >= this.columns) {
             return this.columns - 1;
         } else if (column < 0) {
@@ -52,7 +60,7 @@ TilesManager.prototype = {
             return column;
         }
     },
-    _normalizeInputRow: function(row) {
+    _normalizeInputRow: function (row) {
         if (row >= this.rows) {
             return this.rows - 1;
         } else if (row < 0) {

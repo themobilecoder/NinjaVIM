@@ -1,4 +1,4 @@
- function TileBuilder(game, width, height) {
+function TileBuilder(game, width, height) {
     this.game = game;
     this.tile = {};
     this.letter = '';
