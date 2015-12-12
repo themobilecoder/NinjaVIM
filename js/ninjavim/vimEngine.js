@@ -5,7 +5,7 @@ function VimEngine(cursorManager, tilesManager) {
 
     this.cursorManager = {};
     this.tilesManager = {};
-    _pointManagersToGlobal(this.cursorManager, this.tilesManager);
+    _pointManagersToGlobal(this);
     _setDefaultManagers(this, cursorManager, tilesManager);
 
     function _pointManagersToGlobal(self) {
