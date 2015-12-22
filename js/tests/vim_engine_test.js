@@ -1,45 +1,45 @@
-QUnit.test('VimEngine should handle movement inputs in NORMAL mode', function (assert) {
+QUnit.test('VimContext should handle movement inputs in NORMAL mode', function (assert) {
     var cursorManager = new CursorManager(gameStub);
     cursorManager.currentCursorLocation = {column: 5, row: 5};
-    var vimEngine = new VimEngine(cursorManager);
+    var vimContext = new VimContext(cursorManager);
 
     var upCommand = new MoveUpCommand(cursorManager);
-    assert.deepEqual(vimEngine.getCursorManager().getCursorLocation(),
+    assert.deepEqual(vimContext.getCursorManager().getCursorLocation(),
         {column: 5, row: 5},
         'Cursor should be initialized to col:0, row:1'
     );
-    vimEngine.processCommand(upCommand);
-    assert.deepEqual(vimEngine.getCursorManager().getCursorLocation(),
+    vimContext.processCommand(upCommand);
+    assert.deepEqual(vimContext.getCursorManager().getCursorLocation(),
         {column: 5, row: 4},
         'Cursor should have moved up'
     );
 
     var downCommand = new MoveDownCommand(cursorManager);
-    vimEngine.processCommand(downCommand);
-    assert.deepEqual(vimEngine.getCursorManager().getCursorLocation(),
+    vimContext.processCommand(downCommand);
+    assert.deepEqual(vimContext.getCursorManager().getCursorLocation(),
         {column: 5, row: 5},
         'Cursor should have moved down'
     );
 
     var leftCommand = new MoveLeftCommand(cursorManager);
-    vimEngine.processCommand(leftCommand);
-    assert.deepEqual(vimEngine.getCursorManager().getCursorLocation(),
+    vimContext.processCommand(leftCommand);
+    assert.deepEqual(vimContext.getCursorManager().getCursorLocation(),
         {column: 4, row: 5},
         'Cursor should have moved left'
     );
 
     var rightCommand = new MoveRightCommand(cursorManager);
-    vimEngine.processCommand(rightCommand);
-    assert.deepEqual(vimEngine.getCursorManager().getCursorLocation(),
+    vimContext.processCommand(rightCommand);
+    assert.deepEqual(vimContext.getCursorManager().getCursorLocation(),
         {column: 5, row: 5},
         'Cursor should have moved right'
     );
 });
 
-QUnit.test('VimEngine should allow mode changing', function(assert) {
-    var vimEngine = new VimEngine();
-    assert.equal(vimEngine.getCurrentMode(), VimEngine.MODES.NORMAL, 'VimEngine should be in NORMAL mode by default');
+QUnit.test('VimContext should allow mode changing', function(assert) {
+    var vimContext = new VimContext();
+    assert.equal(vimContext.getCurrentMode(), VimContext.MODES.NORMAL, 'VimContext should be in NORMAL mode by default');
 
-    vimEngine.setCurrentMode(VimEngine.MODES.INSERT, 'VimEngine should be able to change modes');
-    assert.equal(vimEngine.getCurrentMode(), VimEngine.MODES.INSERT, 'VimEngine should be in NORMAL mode by default');
+    vimContext.setCurrentMode(VimContext.MODES.INSERT, 'VimContext should be able to change modes');
+    assert.equal(vimContext.getCurrentMode(), VimContext.MODES.INSERT, 'VimContext should be in NORMAL mode by default');
 });

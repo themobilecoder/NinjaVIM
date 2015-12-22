@@ -9,7 +9,7 @@ Game.prototype = {
         this.tile_width = this.game.world.width / this.grid_rows;
         this.tile_height = this.game.world.height / this.grid_columns;
         this.cursorManager = new CursorManager(this.game);
-        this.vimEngine = new VimEngine(this.cursorManager);
+        this.vimContext = new VimContext(this.cursorManager);
         this.keyboardHandlerManager = new KeyboardHandlerManager(this.context);
     },
     preload: function () {
@@ -30,6 +30,6 @@ Game.prototype = {
     },
     _setupKeyboard: function () {
         this.keyboardHandlerManager.setKeyboard(new PhaserKeyboard(this.game));
-        this.keyboardHandlerManager.setKeyHandlers(new NormalModeKeyboardHandler(this.vimEngine));
+        this.keyboardHandlerManager.setKeyHandlers(new NormalModeKeyboardHandler(this.vimContext));
     }
 };

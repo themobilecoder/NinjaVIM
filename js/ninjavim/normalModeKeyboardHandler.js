@@ -1,5 +1,5 @@
-function NormalModeKeyboardHandler(vimEngine) {
-    this.vimEngine = vimEngine;
+function NormalModeKeyboardHandler(vimContext) {
+    this.vimContext = vimContext;
     this.keyHandlers = {};
     this._init();
 }
@@ -9,16 +9,16 @@ NormalModeKeyboardHandler.prototype = {
     },
     _init: function () {
         this.keyHandlers[KeyboardHandlerManager.KEYS.L_KEY] = function () {
-            this.vimEngine.processCommand(new MoveRightCommand());
+            this.vimContext.processCommand(new MoveRightCommand());
         };
         this.keyHandlers[KeyboardHandlerManager.KEYS.H_KEY] = function () {
-            this.vimEngine.processCommand(new MoveLeftCommand());
+            this.vimContext.processCommand(new MoveLeftCommand());
         };
         this.keyHandlers[KeyboardHandlerManager.KEYS.K_KEY] = function () {
-            this.vimEngine.processCommand(new MoveUpCommand());
+            this.vimContext.processCommand(new MoveUpCommand());
         };
         this.keyHandlers[KeyboardHandlerManager.KEYS.J_KEY] = function () {
-            this.vimEngine.processCommand(new MoveDownCommand());
+            this.vimContext.processCommand(new MoveDownCommand());
         };
     }
 };

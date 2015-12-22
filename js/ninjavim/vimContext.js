@@ -1,7 +1,7 @@
 var NinjaVim = NinjaVim || {};
 
-function VimEngine(cursorManager, tilesManager) {
-    this.currentMode = VimEngine.MODES.NORMAL;
+function VimContext(cursorManager, tilesManager) {
+    this.currentMode = VimContext.MODES.NORMAL;
 
     this.cursorManager = {};
     this.tilesManager = {};
@@ -19,12 +19,12 @@ function VimEngine(cursorManager, tilesManager) {
 
 }
 
-VimEngine.MODES = {
+VimContext.MODES = {
     NORMAL: 'NORMAL',
     INSERT: 'INSERT'
 };
 
-VimEngine.prototype = {
+VimContext.prototype = {
     processCommand: function (command) {
         command.setCursorManager(this.cursorManager);
         command.execute();
