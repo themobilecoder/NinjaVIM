@@ -1,6 +1,7 @@
 var maxColumns = 20;
 var maxRows = 20;
 
+QUnit.module('TilesManager Unit Test');
 QUnit.test("TilesManager should update letters in tiles", function (assert) {
     var tilesManager = new TilesManager(gameStub, maxColumns, maxRows, builderStub);
     assert.equal(tilesManager.tiles[tilesManager._getKey(0, 0)], undefined, "Tiles should undefined");

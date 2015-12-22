@@ -1,4 +1,5 @@
-QUnit.test('VimContext should handle movement inputs in NORMAL mode', function (assert) {
+QUnit.module('Vim Normal Mode Integration Test');
+QUnit.test('Game should handle movement inputs in NORMAL mode', function (assert) {
     var cursorManager = new CursorManager(gameStub);
     cursorManager.currentCursorLocation = {column: 5, row: 5};
     var vimContext = new VimContext(cursorManager, null, new KeyboardHandlerManager(gameStub));

@@ -1,3 +1,4 @@
+QUnit.module('Cursor Manager Unit Test');
 QUnit.test("Cursor Manager should be initialized propery", function (assert) {
     var cursorManager = new CursorManager(gameStub);
     assert.ok(cursorManager, 'Cursor Manager should exist');

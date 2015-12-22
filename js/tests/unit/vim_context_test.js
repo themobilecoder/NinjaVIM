@@ -1,3 +1,4 @@
+QUnit.module('VimContext Unit Test');
 QUnit.test('VimContext should be able to update the cursor', function(assert) {
     var cursorManagerStub = new CursorManager(gameStub);
     var vimContext = new VimContext(cursorManagerStub, {});
