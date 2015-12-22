@@ -45,9 +45,20 @@ VimContext.prototype = {
     moveCursorRight: function() {
         this.cursorManager.moveCursorRight();
     },
+    setCharacterToCurrentCursorLocation: function(character) {
+        var column = this.cursorManager.getCursorLocation().column;
+        var row = this.cursorManager.getCursorLocation().row;
+        this.tilesManager.setLetterToColumn(character, column, row);
+    },
+    getCharacterFromCurrentCursorLocation: function() {
+        var column = this.cursorManager.getCursorLocation().column;
+        var row = this.cursorManager.getCursorLocation().row;
+        return this.tilesManager.getLetterFromLocation(column, row);
+    }
 };
 
 VimContext.MODE = {
     UNKNOWN: 'UNKNOWN',
     NORMAL: 'NORMAL',
+    INSERT: 'INSERT',
 };

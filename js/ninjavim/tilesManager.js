@@ -26,6 +26,7 @@ TilesManager.prototype = {
         var currentTile = this.tiles[key];
         if (currentTile != undefined) currentTile.clear();
         this.tiles[key] = tile;
+        this.draw(tile, column, row);
         return tile;
     },
     getLetterFromLocation: function (column, row) {

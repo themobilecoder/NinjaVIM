@@ -40,3 +40,34 @@ QUnit.test('Game should handle movement inputs in NORMAL mode', function (assert
     );
 });
 
+QUnit.test('Game should be able to transition to INSERT Mode from NORMAL Mode', function(assert) {
+    var tileCount = 20;
+    var cursorManager = new CursorManager(gameStub, tileCount, tileCount);
+    var tilesManager = new TilesManager(gameStub, tileCount, tileCount, builderStub);
+    var keyboardHandlerManager = new KeyboardHandlerManager(gameStub);
+    var vimContext = new VimContext(cursorManager, tilesManager, keyboardHandlerManager);
+
+    var normalModeKeyboardHandler = new NormalModeKeyboardHandler(vimContext);
+    vimContext.setKeyboardHandler(normalModeKeyboardHandler);
+
+    assert.equal(vimContext.getVimMode(),
+        VimContext.MODE.NORMAL,
+        'VimMode should be set to NORMAL when using a NORMAL keyboard handler'
+    );
+
+    var switchToInsertModeCommand = new SwitchToInsertModeCommand(vimContext);
+    switchToInsertModeCommand.execute();
+    assert.equal(vimContext.getVimMode(),
+        VimContext.MODE.INSERT,
+        'VimMode should be set to INSERT when using an INSERT keyboard handler'
+    );
+
+    var insertCharacterCommand = new InsertCharacterCommand(vimContext, 'A');
+    insertCharacterCommand.execute();
+    assert.equal(vimContext.getCharacterFromCurrentCursorLocation(),
+        'A',
+        'VimContext should update the current character in the tile where the cursor is'
+    );
+
+});
+

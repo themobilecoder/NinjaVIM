@@ -11,7 +11,6 @@ Game.prototype = {
         this.cursorManager = new CursorManager(this.game, this.grid_columns, this.grid_rows);
         this.keyboardHandlerManager = new KeyboardHandlerManager(this.context);
         this.keyboardHandlerManager.setKeyboard(new PhaserKeyboard(this.game));
-        this.vimContext = new VimContext(this.cursorManager, null, this.keyboardHandlerManager);
     },
     preload: function () {
         this.game.stage.backgroundColor = '#FFFFFF';
@@ -19,6 +18,7 @@ Game.prototype = {
     },
     create: function () {
         this._createTiles();
+        this._initializeVimContext();
         this._setupKeyboard();
         this.cursorManager.createSprite(this.tile_width, this.tile_height);
     },
@@ -31,5 +31,8 @@ Game.prototype = {
     },
     _setupKeyboard: function () {
         this.vimContext.setKeyboardHandler(new NormalModeKeyboardHandler(this.vimContext));
+    },
+    _initializeVimContext: function() {
+        this.vimContext = new VimContext(this.cursorManager, this.tilesManager, this.keyboardHandlerManager);
     }
 };
