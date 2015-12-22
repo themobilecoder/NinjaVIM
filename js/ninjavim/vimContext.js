@@ -37,5 +37,11 @@ VimContext.prototype = {
     },
     getCurrentMode: function () {
         return this.currentMode;
+    },
+    getCursorLocation: function() {
+        return this.cursorManager.getCursorLocation();
+    },
+    moveCursorTo: function(column, row) {
+        this.cursorManager.moveCursorTo(column, row);
     }
 };
