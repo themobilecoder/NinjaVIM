@@ -1,6 +1,6 @@
 function VimCommand() {
     this.TYPE = VimCommand.TYPE.UNKNOWN;
-    this.cursorManager = null;
+    this.vimContext = null;
 }
 VimCommand.TYPE = {
     UNKNOWN: 'UNKNOWN',
@@ -12,39 +12,39 @@ VimCommand.TYPE = {
 VimCommand.prototype.execute = function () {
     throw Error('Cannot execute command of an abstract command');
 };
-VimCommand.prototype.setCursorManager = function (cursorManager) {
-    this.cursorManager = cursorManager;
-};
 
-
-function MoveUpCommand() {
+function MoveUpCommand(vimContext) {
     this.TYPE = VimCommand.TYPE.MOVE_UP;
+    this.vimContext = vimContext;
 }
 MoveUpCommand.prototype = new VimCommand();
 MoveUpCommand.prototype.execute = function () {
-    this.cursorManager.moveCursorUp();
+    this.vimContext.moveCursorUp();
 };
 
-function MoveDownCommand() {
+function MoveDownCommand(vimContext) {
+    this.vimContext = vimContext;
     this.TYPE = VimCommand.TYPE.MOVE_DOWN;
 }
 MoveDownCommand.prototype = new VimCommand();
 MoveDownCommand.prototype.execute = function () {
-    this.cursorManager.moveCursorDown();
+    this.vimContext.moveCursorDown();
 };
 
-function MoveLeftCommand() {
+function MoveLeftCommand(vimContext) {
+    this.vimContext = vimContext;
     this.TYPE = VimCommand.TYPE.MOVE_LEFT;
 }
 MoveLeftCommand.prototype = new VimCommand();
 MoveLeftCommand.prototype.execute = function () {
-    this.cursorManager.moveCursorLeft();
+    this.vimContext.moveCursorLeft();
 };
 
-function MoveRightCommand() {
+function MoveRightCommand(vimContext) {
+    this.vimContext = vimContext;
     this.TYPE = VimCommand.TYPE.MOVE_RIGHT;
 }
 MoveRightCommand.prototype = new VimCommand();
 MoveRightCommand.prototype.execute = function () {
-    this.cursorManager.moveCursorRight();
+    this.vimContext.moveCursorRight();
 };

@@ -9,16 +9,20 @@ NormalModeKeyboardHandler.prototype = {
     },
     _init: function () {
         this.keyHandlers[KeyboardHandlerManager.KEYS.L_KEY] = function () {
-            this.vimContext.processCommand(new MoveRightCommand());
+            var command = new MoveRightCommand(this.vimContext);
+            command.execute();
         };
         this.keyHandlers[KeyboardHandlerManager.KEYS.H_KEY] = function () {
-            this.vimContext.processCommand(new MoveLeftCommand());
+            var command = new MoveLeftCommand(this.vimContext);
+            command.execute();
         };
         this.keyHandlers[KeyboardHandlerManager.KEYS.K_KEY] = function () {
-            this.vimContext.processCommand(new MoveUpCommand());
+            var command = new MoveUpCommand(this.vimContext);
+            command.execute();
         };
         this.keyHandlers[KeyboardHandlerManager.KEYS.J_KEY] = function () {
-            this.vimContext.processCommand(new MoveDownCommand());
+            var command = new MoveDownCommand(this.vimContext);
+            command.execute();
         };
     }
 };
