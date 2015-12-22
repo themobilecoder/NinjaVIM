@@ -9,3 +9,16 @@ QUnit.test('VimContext should be able to update the cursor', function(assert) {
     currentCursorLocation = vimContext.getCursorLocation();
     assert.deepEqual(currentCursorLocation, {column: 2, row: 2}, 'Cursor location should be updated to 2,2');
 });
+
+QUnit.test('VimContext should be able to update the keyboardManager', function(assert) {
+    var keyboardManager = new KeyboardHandlerManager(gameStub);
+    var vimContext = new VimContext(null, null, keyboardManager);
+
+    assert.equal(vimContext.getVimMode(), VimContext.MODE.UNKNOWN, 'VimMode should be initialized to UNKNOWN');
+
+    vimContext.setKeyboardHandler(new NormalModeKeyboardHandler(vimContext));
+    assert.equal(vimContext.getVimMode(),
+        VimContext.MODE.NORMAL,
+        'VimMode should be updated to NORMAL when using a NORMAL keyboard handler'
+    );
+});

@@ -1,8 +1,10 @@
 var NinjaVim = NinjaVim || {};
 
-function VimContext(cursorManager, tilesManager) {
+function VimContext(cursorManager, tilesManager, keyboardHandlerManager) {
     this.cursorManager = {};
     this.tilesManager = {};
+    this.vimMode = VimContext.MODE.UNKNOWN;
+    this.keyboardHandlerManager = keyboardHandlerManager;
     _pointManagersToGlobal(this);
     _setDefaultManagers(this, cursorManager, tilesManager);
 
@@ -18,6 +20,13 @@ function VimContext(cursorManager, tilesManager) {
 }
 
 VimContext.prototype = {
+    getVimMode: function() {
+        return this.vimMode;
+    },
+    setKeyboardHandler: function(keyboardHandler) {
+        this.keyboardHandlerManager.setKeyHandlers(keyboardHandler);
+        this.vimMode = keyboardHandler.getVimMode();
+    },
     getCursorLocation: function() {
         return this.cursorManager.getCursorLocation();
     },
@@ -36,4 +45,9 @@ VimContext.prototype = {
     moveCursorRight: function() {
         this.cursorManager.moveCursorRight();
     },
+};
+
+VimContext.MODE = {
+    UNKNOWN: 'UNKNOWN',
+    NORMAL: 'NORMAL',
 };

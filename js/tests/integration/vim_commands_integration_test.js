@@ -1,7 +1,10 @@
 QUnit.test('VimContext should handle movement inputs in NORMAL mode', function (assert) {
     var cursorManager = new CursorManager(gameStub);
     cursorManager.currentCursorLocation = {column: 5, row: 5};
-    var vimContext = new VimContext(cursorManager);
+    var vimContext = new VimContext(cursorManager, null, new KeyboardHandlerManager(gameStub));
+
+    vimContext.setKeyboardHandler(new NormalModeKeyboardHandler(vimContext));
+    assert.equal(vimContext.getVimMode(), VimContext.MODE.NORMAL, 'VimContext should be in NORMAL mode');
 
     var upCommand = new MoveUpCommand(vimContext);
     assert.deepEqual(vimContext.getCursorLocation(),
