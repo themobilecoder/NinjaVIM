@@ -54,6 +54,11 @@ VimContext.prototype = {
         var column = this.cursorManager.getCursorLocation().column;
         var row = this.cursorManager.getCursorLocation().row;
         return this.tilesManager.getLetterFromLocation(column, row);
+    },
+    getCharacterFromCursorLocation: function(cursorLocation) {
+        var column = cursorLocation.column;
+        var row = cursorLocation.row;
+        return this.tilesManager.getLetterFromLocation(column, row);
     }
 };
 

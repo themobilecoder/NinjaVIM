@@ -68,4 +68,5 @@ function InsertCharacterCommand(vimContext, character) {
 InsertCharacterCommand.prototype = new VimCommand();
 InsertCharacterCommand.prototype.execute = function () {
     this.vimContext.setCharacterToCurrentCursorLocation(this.character);
+    this.vimContext.moveCursorRight();
 };

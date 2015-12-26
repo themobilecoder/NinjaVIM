@@ -61,13 +61,44 @@ QUnit.test('Game should be able to transition to INSERT Mode from NORMAL Mode', 
         VimContext.MODE.INSERT,
         'VimMode should be set to INSERT when using an INSERT keyboard handler'
     );
+});
+
+QUnit.module('Vim Insert Mode Integration Test');
+QUnit.test('Should be able to type characters in INSERT Mode', function(assert) {
+    var tileCount = 20;
+    var cursorManager = new CursorManager(gameStub, tileCount, tileCount);
+    var tilesManager = new TilesManager(gameStub, tileCount, tileCount, builderStub);
+    var keyboardHandlerManager = new KeyboardHandlerManager(gameStub);
+    var vimContext = new VimContext(cursorManager, tilesManager, keyboardHandlerManager);
+
+    var normalModeKeyboardHandler = new NormalModeKeyboardHandler(vimContext);
+    vimContext.setKeyboardHandler(normalModeKeyboardHandler);
+
+    assert.deepEqual(vimContext.getCursorLocation(),
+        {column: 0, row: 0},
+        'Cursor should be at the initial position'
+    );
+    var switchToInsertModeCommand = new SwitchToInsertModeCommand(vimContext);
+    switchToInsertModeCommand.execute();
+    assert.equal(vimContext.getVimMode(),
+        VimContext.MODE.INSERT,
+        'VimMode should be set to INSERT when using an INSERT keyboard handler'
+    );
 
     var insertCharacterCommand = new InsertCharacterCommand(vimContext, 'A');
     insertCharacterCommand.execute();
-    assert.equal(vimContext.getCharacterFromCurrentCursorLocation(),
+    var cursorLocationToBeSetByACharacter = {column: 0, row: 0};
+    assert.equal(vimContext.getCharacterFromCursorLocation(cursorLocationToBeSetByACharacter),
         'A',
         'VimContext should update the current character in the tile where the cursor is'
     );
-
+    var expectedNewCursorLocation = {column: 1, row: 0};
+    assert.deepEqual(vimContext.getCursorLocation(),
+        expectedNewCursorLocation,
+        'Cursor should be moved to the right after entering a character'
+    );
+    assert.equal(vimContext.getCharacterFromCurrentCursorLocation(),
+        '',
+        'Current cursor location should still have a blank tile'
+    );
 });
-
