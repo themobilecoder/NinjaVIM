@@ -59,6 +59,9 @@ VimContext.prototype = {
         var column = cursorLocation.column;
         var row = cursorLocation.row;
         return this.tilesManager.getLetterFromLocation(column, row);
+    },
+    getRightBorder: function() {
+        return this.cursorManager.getRightBorder();
     }
 };
 

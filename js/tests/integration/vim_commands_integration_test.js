@@ -101,4 +101,22 @@ QUnit.test('Should be able to type characters in INSERT Mode', function(assert) 
         '',
         'Current cursor location should still have a blank tile'
     );
+
+    QUnit.test('Should move cursor to next row when typing in INSERT mode reached the right end', function(assert) {
+        var tileCount = 20;
+        var cursorManager = new CursorManager(gameStub, tileCount, tileCount);
+        var tilesManager = new TilesManager(gameStub, tileCount, tileCount, builderStub);
+        var keyboardHandlerManager = new KeyboardHandlerManager(gameStub);
+        var vimContext = new VimContext(cursorManager, tilesManager, keyboardHandlerManager);
+
+        vimContext.setKeyboardHandler(new InsertModeKeyboardHandler(vimContext));
+        var initialCursorLocation = {column: 19, row: 0 };
+        vimContext.moveCursorTo(initialCursorLocation.column, initialCursorLocation.row);
+
+        var insertCharacterCommand = new InsertCharacterCommand(vimContext, 'A');
+        insertCharacterCommand.execute();
+
+        assert.deepEqual(vimContext.getCharacterFromCursorLocation(initialCursorLocation), 'A', 'Character should have been written');
+        assert.deepEqual(vimContext.getCursorLocation(), {column: 0, row: 1}, 'Cursor should have moved to the next row');
+    });
 });
