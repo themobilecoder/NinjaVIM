@@ -5,6 +5,7 @@ function VimContext(cursorManager, tilesManager, keyboardHandlerManager) {
     this.tilesManager = {};
     this.vimMode = VimContext.MODE.UNKNOWN;
     this.keyboardHandlerManager = keyboardHandlerManager;
+    this.shiftIsDown = false;
     _pointManagersToGlobal(this);
     _setDefaultManagers(this, cursorManager, tilesManager);
 
@@ -26,6 +27,12 @@ VimContext.prototype = {
     setKeyboardHandler: function(keyboardHandler) {
         this.keyboardHandlerManager.setKeyHandlers(keyboardHandler);
         this.vimMode = keyboardHandler.getVimMode();
+    },
+    setShiftPressed: function() {
+        this.shiftIsDown = true;
+    },
+    setShiftReleased: function() {
+        this.shiftIsDown = false;
     },
     getCursorLocation: function() {
         return this.cursorManager.getCursorLocation();
@@ -62,6 +69,9 @@ VimContext.prototype = {
     },
     getRightBorder: function() {
         return this.cursorManager.getRightBorder();
+    },
+    isShiftDown: function() {
+        return this.shiftIsDown;
     }
 };
 

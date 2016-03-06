@@ -23,7 +23,7 @@ Game.prototype = {
         this.cursorManager.createSprite(this.tile_width, this.tile_height);
     },
     update: function () {
-
+        this._shiftButtonProcessor();
     },
     _createTiles: function () {
         this.tilesManager = new TilesManager(this.game, this.grid_rows, this.grid_columns);
@@ -34,5 +34,8 @@ Game.prototype = {
     },
     _initializeVimContext: function() {
         this.vimContext = new VimContext(this.cursorManager, this.tilesManager, this.keyboardHandlerManager);
+    },
+    _shiftButtonProcessor: function () {
+        this.keyboardHandlerManager.isShiftDown ? this.vimContext.setShiftPressed() : this.vimContext.setShiftReleased();
     }
 };

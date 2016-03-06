@@ -28,5 +28,8 @@ NormalModeKeyboardHandler.prototype = {
             var command = new MoveDownCommand(this.vimContext);
             command.execute();
         };
+        this.keyHandlers[KeyboardHandlerManager.KEYS.SHIFT_KEY] = function () {
+            //Do nothing
+        };
     }
 };
