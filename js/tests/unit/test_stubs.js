@@ -21,3 +21,7 @@ var builderStub = {
         return this;
     }
 };
+
+var testConfig = {
+    cursorAlpha : 1
+};

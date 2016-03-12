@@ -1,5 +1,6 @@
-function CursorManager(game, numberOfColumns, numberOfRows) {
+function CursorManager(game, numberOfColumns, numberOfRows, config) {
     this.game = game;
+    this.config = config;
     this.cursor = {};
     this.currentCursorLocation = {column: 0, row: 0};
     this.rightBorder = numberOfColumns-1;
@@ -8,11 +9,12 @@ function CursorManager(game, numberOfColumns, numberOfRows) {
 
 CursorManager.prototype = {
     loadAsset: function () {
-        this.game.load.image('cursor', 'assets/star.png', 0, 0);
+        var cursorAsset = this.config.cursorImage;
+        this.game.load.image('cursor', cursorAsset, 0, 0);
     },
     createSprite: function (width, height) {
         this.cursor = this.game.add.sprite(0, 0, 'cursor');
-        this.cursor.alpha = 0.7;
+        this.cursor.alpha = this.config.cursorAlpha;
         this.cursor.width = width;
         this.cursor.height = height;
     },

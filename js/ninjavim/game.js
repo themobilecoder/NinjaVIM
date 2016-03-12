@@ -1,19 +1,20 @@
 var Game = function (game) {
+    this.config = NinjaVim.config;
+    this.game = game;
 };
 
 Game.prototype = {
     init: function () {
         this.context = this;
-        this.grid_rows = 20;
-        this.grid_columns = 20;
-        this.tile_width = this.game.world.width / this.grid_rows;
-        this.tile_height = this.game.world.height / this.grid_columns;
-        this.cursorManager = new CursorManager(this.game, this.grid_columns, this.grid_rows);
+        this.grid_rows = this.config.numberOfRows;
+        this.grid_columns = this.config.numberOfColumns;
+        this.tile_width = this.game.world.width / this.grid_columns;
+        this.tile_height = this.game.world.height / this.grid_rows;
+        this.cursorManager = new CursorManager(this.game, this.grid_columns, this.grid_rows, this.config);
         this.keyboardHandlerManager = new KeyboardHandlerManager(this.context);
         this.keyboardHandlerManager.setKeyboard(new PhaserKeyboard(this.game));
     },
     preload: function () {
-        this.game.stage.backgroundColor = '#FFFFFF';
         this.cursorManager.loadAsset();
     },
     create: function () {
@@ -26,7 +27,8 @@ Game.prototype = {
         this._shiftButtonProcessor();
     },
     _createTiles: function () {
-        this.tilesManager = new TilesManager(this.game, this.grid_rows, this.grid_columns);
+        var tileBuilder = new TileBuilder(this.game, this.tile_width, this.tile_height, this.config);
+        this.tilesManager = new TilesManager(this.game, this.grid_rows, this.grid_columns, tileBuilder);
         this.tilesManager.init();
     },
     _setupKeyboard: function () {
