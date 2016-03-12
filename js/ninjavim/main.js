@@ -10,7 +10,7 @@ NinjaVim.game = new Phaser.Game(
 );
 
 if(NinjaVim.config.debugMode) {
-    debug();
+    debug(IntroGameState);
 }
 
 NinjaVim.game.state.add('intro', IntroGameState);

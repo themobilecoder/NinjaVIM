@@ -1,6 +1,6 @@
-function debug() {
-    var originalCreate = IntroGameState.prototype.create;
-    IntroGameState.prototype.create = function () {
+function debug(state) {
+    var originalCreate = state.prototype.create;
+    state.prototype.create = function () {
         var style = {font: '12px Courier'};
         this.debug = {};
         this.debug.column = this.game.add.text(0, 0, "", style);
@@ -8,8 +8,8 @@ function debug() {
         originalCreate.apply(this, arguments);
     };
 
-    var originalRender = IntroGameState.prototype.render;
-    IntroGameState.prototype.render = function () {
+    var originalRender = state.prototype.render;
+    state.prototype.render = function () {
         var column = this.vimContext.getCursorLocation().column;
         var row = this.vimContext.getCursorLocation().row;
         this.debug.column.text = "Vim Cursor COL: " + column;
