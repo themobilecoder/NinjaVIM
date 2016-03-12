@@ -1,9 +1,9 @@
-var Game = function (game) {
+var IntroGameState = function (game) {
     this.config = NinjaVim.config;
     this.game = game;
 };
 
-Game.prototype = {
+IntroGameState.prototype = {
     init: function () {
         this.context = this;
         this.grid_rows = this.config.numberOfRows;

@@ -9,6 +9,6 @@ NinjaVim.game = new Phaser.Game(
     ''
 );
 
-NinjaVim.game.state.add('Game', Game);
-NinjaVim.game.state.start('Game');
+NinjaVim.game.state.add('intro', IntroGameState);
+NinjaVim.game.state.start('intro');
 
