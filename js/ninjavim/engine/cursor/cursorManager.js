@@ -10,13 +10,14 @@ function CursorManager(game, numberOfColumns, numberOfRows, config) {
 CursorManager.prototype = {
     loadAsset: function () {
         var cursorAsset = this.config.cursorImage;
-        this.game.load.image('cursor', cursorAsset, 0, 0);
+        var cursorAssetJson = this.config.cursorImageJson;
+        this.game.load.atlasJSONHash('cursor', cursorAsset, cursorAssetJson);
     },
     createSprite: function (width, height) {
-        this.cursor = this.game.add.sprite(0, 0, 'cursor');
-        this.cursor.alpha = this.config.cursorAlpha;
-        this.cursor.width = width;
-        this.cursor.height = height;
+        this.staticCursorWidth = width;
+        this.staticCursorHeight = height;
+        this._setupCursor();
+        this._animateCursor();
     },
     getCursorLocation: function () {
         return this.currentCursorLocation;
@@ -63,8 +64,18 @@ CursorManager.prototype = {
         this._drawCursor();
     },
     _drawCursor: function () {
-        this.cursor.x = this.currentCursorLocation.column * this.cursor.width;
-        this.cursor.y = this.currentCursorLocation.row * this.cursor.height;
+        this.cursor.x = this.currentCursorLocation.column * this.staticCursorWidth;
+        this.cursor.y = this.currentCursorLocation.row * this.staticCursorHeight;
+    },
+    _setupCursor: function () {
+        this.cursor = this.game.add.sprite(0, 0, 'cursor');
+        this.cursor.alpha = this.config.cursorAlpha;
+        this.cursor.width = this.staticCursorWidth;
+        this.cursor.height = this.staticCursorHeight;
+    },
+    _animateCursor: function () {
+        this.cursor.animations.add('ninja');
+        this.cursor.animations.play('ninja', 10, true);
     },
     _isCoordinateOutOfBorder: function(column, row) {
         return (column < 0

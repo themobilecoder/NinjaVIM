@@ -4,7 +4,8 @@ var GameConfig = {
     numberOfRows : 20,
     numberOfColumns : 20,
 
-    cursorImage : 'assets/star.png',
+    cursorImage : 'assets/ninja.png',
+    cursorImageJson : 'assets/ninja.json',
     cursorAlpha : 1,
 
     fontSize : '20px',

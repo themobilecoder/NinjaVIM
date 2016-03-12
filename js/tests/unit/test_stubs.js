@@ -7,7 +7,12 @@ var gameStub = {
             };
         },
         sprite: function () {
-            return {}
+            return {
+                animations: {
+                    add: function() {},
+                    play: function() {}
+                }
+            }
         }
     }
 };
