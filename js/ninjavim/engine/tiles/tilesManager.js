@@ -13,12 +13,12 @@ TilesManager.prototype = {
     init: function () {
         for (var column = 0; column < this.columns; ++column) {
             for (var row = 0; row < this.rows; ++row) {
-                var tile = this.setLetterToColumn("", column, row);
+                var tile = this.setLetterToTile("", column, row);
                 this.draw(tile, column, row);
             }
         }
     },
-    setLetterToColumn: function (letter, column, row) {
+    setLetterToTile: function (letter, column, row) {
         column = this._normalizeInputColumn(column);
         row = this._normalizeInputRow(row);
         var tile = this.builder.setLetter(letter).build();

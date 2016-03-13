@@ -55,7 +55,7 @@ VimContext.prototype = {
     setCharacterToCurrentCursorLocation: function(character) {
         var column = this.cursorManager.getCursorLocation().column;
         var row = this.cursorManager.getCursorLocation().row;
-        this.tilesManager.setLetterToColumn(character, column, row);
+        this.tilesManager.setLetterToTile(character, column, row);
     },
     getCharacterFromCurrentCursorLocation: function() {
         var column = this.cursorManager.getCursorLocation().column;
