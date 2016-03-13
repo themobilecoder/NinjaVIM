@@ -1,10 +1,9 @@
-function DefaultTileBuilder(game, width, height, config) {
-    this.config = config;
+function DefaultTileBuilder(game, width, height) {
     this.game = game;
     this.tile = {};
     this.letter = '';
-    this.letterSize = this.config.fontSize;
-    this.font = this.config.fontStyle;
+    this.letterSize = '20px';
+    this.font = 'Arial';
     this.width = width;
     this.height = height;
 }
@@ -15,9 +14,9 @@ DefaultTileBuilder.prototype = {
     },
     build: function () {
         this.tile = this.game.add.bitmapData(this.width, this.height);
-        this.tile.alpha = this.config.tileAlpha;
+        this.tile.alpha = 1;
         this.tile.ctx.rect(0, 0, this.width, this.height);
-        this.tile.ctx.fillStyle = this.config.tileBackgroundColor;
+        this.tile.ctx.fillStyle = '#DDDDDD';
         this.tile.ctx.fill();
 
         this.tile.letter = this.letter;

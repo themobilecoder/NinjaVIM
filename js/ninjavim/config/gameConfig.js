@@ -10,10 +10,6 @@ var GameConfig = {
     cursorImageJson : 'assets/ninja.json',
     cursorAlpha : 1,
 
-    fontSize : '20px',
-    fontStyle : 'Arial',
-
-    tileBackgroundColor : '#DDDDDD',
     tileAlpha : 1
 };
 

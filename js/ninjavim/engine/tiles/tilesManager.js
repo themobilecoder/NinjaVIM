@@ -6,7 +6,7 @@ function TilesManager(game, maxColumns, maxRows, builder) {
     this.rows = maxRows;
     this.tileWidth = game.world.width / maxColumns;
     this.tileHeight = game.world.height / maxRows;
-    this.builder = builder || new DefaultTileBuilder(game, this.tileWidth, this.tileHeight, NinjaVim.config);
+    this.builder = builder || new DefaultTileBuilder(game, this.tileWidth, this.tileHeight);
     this.tilesContainer = this.game.add.group();
 }
 
@@ -31,7 +31,7 @@ TilesManager.prototype = {
         return letter != undefined ? letter : '';
     },
     draw: function (column, row, builder) {
-        builder = builder || new DefaultTileBuilder(this.game, this.tileWidth, this.tileHeight, NinjaVim.config);
+        builder = builder || new DefaultTileBuilder(this.game, this.tileWidth, this.tileHeight);
         var key = this._getKey(column, row);
         var currentTile = this.tiles[key];
         if (currentTile != undefined) currentTile.clear();
