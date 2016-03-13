@@ -1,11 +1,12 @@
 function TilesManager(game, maxColumns, maxRows, builder) {
     this.tiles = {};
+    this.letters = {};
     this.game = game;
     this.columns = maxColumns;
     this.rows = maxRows;
     this.tileWidth = game.world.width / maxColumns;
     this.tileHeight = game.world.height / maxRows;
-    this.builder = builder || new DefaultTileBuilder(game, this.tileWidth, this.tileHeight);
+    this.builder = builder || new DefaultTileBuilder(game, this.tileWidth, this.tileHeight, NinjaVim.config);
     this.tilesContainer = this.game.add.group();
 }
 
@@ -13,29 +14,31 @@ TilesManager.prototype = {
     init: function () {
         for (var column = 0; column < this.columns; ++column) {
             for (var row = 0; row < this.rows; ++row) {
-                var tile = this.setLetterToTile("", column, row);
-                this.draw(tile, column, row);
+                this.setLetterToTile("", column, row);
+                this.draw(column, row, this.builder);
             }
         }
     },
     setLetterToTile: function (letter, column, row) {
         column = this._normalizeInputColumn(column);
         row = this._normalizeInputRow(row);
-        var tile = this.builder.setLetter(letter).build();
+        var key = this._getKey(column, row);
+        this.letters[key] = letter;
+        return letter;
+    },
+    getLetterFromLocation: function (column, row) {
+        var letter = this.letters[this._getKey(column, row)];
+        return letter != undefined ? letter : '';
+    },
+    draw: function (column, row, builder) {
+        builder = builder || new DefaultTileBuilder(this.game, this.tileWidth, this.tileHeight, NinjaVim.config);
         var key = this._getKey(column, row);
         var currentTile = this.tiles[key];
         if (currentTile != undefined) currentTile.clear();
-        this.tiles[key] = tile;
-        this.draw(tile, column, row);
-        return tile;
-    },
-    getLetterFromLocation: function (column, row) {
-        var key = this._getKey(column, row);
-        var tileInColumnRow = this.tiles[key];
-        return tileInColumnRow != undefined ? tileInColumnRow.letter : '';
-    },
-    draw: function (tile, column, row) {
-        this.tilesContainer.create(column * this.tileWidth, row * this.tileHeight, tile);
+
+        var tileImage = builder.setLetter(this.letters[key]).build();
+        this.tiles[key] = tileImage;
+        this.tilesContainer.create(column * this.tileWidth, row * this.tileHeight, tileImage);
     },
     _getKey: function (column, row) {
         if (parseInt(column) >= 0 && parseInt(column) < 100 && parseInt(row) >= 0 && parseInt(column) < 100) {
