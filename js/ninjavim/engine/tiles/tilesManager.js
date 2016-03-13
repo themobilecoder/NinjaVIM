@@ -5,7 +5,7 @@ function TilesManager(game, maxColumns, maxRows, builder) {
     this.rows = maxRows;
     this.tileWidth = game.world.width / maxColumns;
     this.tileHeight = game.world.height / maxRows;
-    this.builder = builder || new TileBuilder(game, this.tileWidth, this.tileHeight);
+    this.builder = builder || new DefaultTileBuilder(game, this.tileWidth, this.tileHeight);
     this.tilesContainer = this.game.add.group();
 }
 

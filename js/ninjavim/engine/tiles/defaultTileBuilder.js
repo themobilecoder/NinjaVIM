@@ -1,4 +1,4 @@
-function TileBuilder(game, width, height, config) {
+function DefaultTileBuilder(game, width, height, config) {
     this.config = config;
     this.game = game;
     this.tile = {};
@@ -8,7 +8,7 @@ function TileBuilder(game, width, height, config) {
     this.width = width;
     this.height = height;
 }
-TileBuilder.prototype = {
+DefaultTileBuilder.prototype = {
     setLetter: function (letter) {
         this.letter = letter;
         return this;
