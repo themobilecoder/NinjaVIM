@@ -1,0 +1,224 @@
+{
+  "frames": [
+    {
+      "filename": "smoke_plume_0001",
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "w": 512,
+        "h": 512
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 512,
+        "h": 512
+      },
+      "sourceSize": {
+        "w": 512,
+        "h": 512
+      }
+    },
+    {
+      "filename": "smoke_plume_0002",
+      "frame": {
+        "x": 0,
+        "y": 513,
+        "w": 512,
+        "h": 512
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 512,
+        "h": 512
+      },
+      "sourceSize": {
+        "w": 512,
+        "h": 512
+      }
+    },
+    {
+      "filename": "smoke_plume_0003",
+      "frame": {
+        "x": 513,
+        "y": 0,
+        "w": 512,
+        "h": 512
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 512,
+        "h": 512
+      },
+      "sourceSize": {
+        "w": 512,
+        "h": 512
+      }
+    },
+    {
+      "filename": "smoke_plume_0004",
+      "frame": {
+        "x": 513,
+        "y": 513,
+        "w": 512,
+        "h": 512
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 512,
+        "h": 512
+      },
+      "sourceSize": {
+        "w": 512,
+        "h": 512
+      }
+    },
+    {
+      "filename": "smoke_plume_0005",
+      "frame": {
+        "x": 0,
+        "y": 1026,
+        "w": 512,
+        "h": 512
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 512,
+        "h": 512
+      },
+      "sourceSize": {
+        "w": 512,
+        "h": 512
+      }
+    },
+    {
+      "filename": "smoke_plume_0006",
+      "frame": {
+        "x": 513,
+        "y": 1026,
+        "w": 512,
+        "h": 512
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 512,
+        "h": 512
+      },
+      "sourceSize": {
+        "w": 512,
+        "h": 512
+      }
+    },
+    {
+      "filename": "smoke_plume_0007",
+      "frame": {
+        "x": 1026,
+        "y": 0,
+        "w": 512,
+        "h": 512
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 512,
+        "h": 512
+      },
+      "sourceSize": {
+        "w": 512,
+        "h": 512
+      }
+    },
+    {
+      "filename": "smoke_plume_0008",
+      "frame": {
+        "x": 1026,
+        "y": 513,
+        "w": 512,
+        "h": 512
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 512,
+        "h": 512
+      },
+      "sourceSize": {
+        "w": 512,
+        "h": 512
+      }
+    },
+    {
+      "filename": "smoke_plume_0009",
+      "frame": {
+        "x": 1026,
+        "y": 1026,
+        "w": 512,
+        "h": 512
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 512,
+        "h": 512
+      },
+      "sourceSize": {
+        "w": 512,
+        "h": 512
+      }
+    },
+    {
+      "filename": "smoke_plume_0010",
+      "frame": {
+        "x": 0,
+        "y": 1539,
+        "w": 512,
+        "h": 512
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 512,
+        "h": 512
+      },
+      "sourceSize": {
+        "w": 512,
+        "h": 512
+      }
+    }
+  ],
+  "meta": {
+    "app": "http://www.leshylabs.com/apps/sstool/",
+    "version": "Leshy SpriteSheet Tool v0.8.4",
+    "image": "spritesheet.png",
+    "size": {
+      "w": 1538,
+      "h": 2051
+    },
+    "scale": 1
+  }
+}
