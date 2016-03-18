@@ -3,8 +3,8 @@ var maxRows = 20;
 
 QUnit.module('TilesManager Unit Test');
 QUnit.test("TilesCharacterManager should update characters in tiles", function (assert) {
-    var tilesManager = new TilesCharacterManager(gameStub, maxColumns, maxRows, builderStub);
-    assert.equal(tilesManager.tiles[tilesManager._getKey(0, 0)], undefined, "Tiles should undefined");
+    var tilesManager = new TilesCharacterManager(maxColumns, maxRows);
+    assert.equal(tilesManager.characters[tilesManager._getKey(0, 0)], undefined, "Tiles should undefined");
     tilesManager.setCharacterToTile('A', 0, 0);
     assert.equal(tilesManager.getCharacterFromLocation(0, 0), 'A', "Character should have been set");
     tilesManager.setCharacterToTile('C', 19, 19);

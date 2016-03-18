@@ -15,10 +15,10 @@ IntroGameState.prototype = {
         this.keyboardHandlerManager.setKeyboard(new PhaserKeyboard(this.game));
     },
     preload: function () {
-        this.cursorManager.loadAsset();
+        this._initializeGameAssets();
     },
     create: function () {
-        this._createTiles();
+        this._initializeCharactersInTiles();
         this._initializeVimContext();
         this._setupKeyboard();
         this.cursorManager.createSprite(this.tile_width, this.tile_height);
@@ -26,7 +26,11 @@ IntroGameState.prototype = {
     update: function () {
         this._shiftButtonProcessor();
     },
-    _createTiles: function () {
+    _initializeGameAssets: function () {
+        this.cursorManager.loadAsset();
+        this.game.stage.backgroundColor = this.config.backgroundColor;
+    },
+    _initializeCharactersInTiles: function () {
         var tileBuilder = new DefaultTileBuilder(this.game, this.tile_width, this.tile_height, this.config);
         this.tilesManager = new TilesCharacterManager(this.game, this.grid_rows, this.grid_columns, tileBuilder);
         this.tilesManager.init();

@@ -6,6 +6,8 @@ var GameConfig = {
     numberOfRows : 20,
     numberOfColumns : 20,
 
+    backgroundColor: '#DDDDDD',
+
     cursorImage : 'assets/ninja.png',
     cursorImageJson : 'assets/ninja.json',
     cursorAlpha : 1,

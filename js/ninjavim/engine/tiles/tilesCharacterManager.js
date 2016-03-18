@@ -1,13 +1,7 @@
-function TilesCharacterManager(game, maxColumns, maxRows, builder) {
-    this.tiles = {};
+function TilesCharacterManager(game, maxColumns, maxRows) {
     this.characters = {};
-    this.game = game;
     this.columns = maxColumns;
     this.rows = maxRows;
-    this.tileWidth = game.world.width / maxColumns;
-    this.tileHeight = game.world.height / maxRows;
-    this.builder = builder || new DefaultTileBuilder(game, this.tileWidth, this.tileHeight);
-    this.tilesContainer = this.game.add.group();
 }
 
 TilesCharacterManager.prototype = {
@@ -15,7 +9,6 @@ TilesCharacterManager.prototype = {
         for (var column = 0; column < this.columns; ++column) {
             for (var row = 0; row < this.rows; ++row) {
                 this.setCharacterToTile("", column, row);
-                this.draw(column, row, this.builder);
             }
         }
     },
@@ -29,16 +22,6 @@ TilesCharacterManager.prototype = {
     getCharacterFromLocation: function (column, row) {
         var character = this.characters[this._getKey(column, row)];
         return character != undefined ? character : '';
-    },
-    draw: function (column, row, builder) {
-        builder = builder || new DefaultTileBuilder(this.game, this.tileWidth, this.tileHeight);
-        var key = this._getKey(column, row);
-        var currentTile = this.tiles[key];
-        if (currentTile != undefined) currentTile.clear();
-
-        var tileImage = builder.setCharacter(this.characters[key]).build();
-        this.tiles[key] = tileImage;
-        this.tilesContainer.create(column * this.tileWidth, row * this.tileHeight, tileImage);
     },
     _getKey: function (column, row) {
         if (parseInt(column) >= 0 && parseInt(column) < 100 && parseInt(row) >= 0 && parseInt(column) < 100) {
