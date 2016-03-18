@@ -46079,7 +46079,7 @@ Phaser.GameObjectFactory.prototype = {
     * A RetroFont can be used as a texture for an Image or Sprite and optionally add it to the Cache.
     * A RetroFont uses a bitmap which contains fixed with characters for the font set. You use character spacing to define the set.
     * If you need variable width character support then use a BitmapText object instead. The main difference between a RetroFont and a BitmapText
-    * is that a RetroFont creates a single texture that you can apply to a game object, where-as a BitmapText creates one Sprite object per letter of text.
+    * is that a RetroFont creates a single texture that you can apply to a game object, where-as a BitmapText creates one Sprite object per character of text.
     * The texture can be asssigned or one or multiple images/sprites, but note that the text the RetroFont uses will be shared across them all,
     * i.e. if you need each Image to have different text in it, then you need to create multiple RetroFont objects.
     *
@@ -46105,7 +46105,7 @@ Phaser.GameObjectFactory.prototype = {
     * Create a new BitmapText object.
     *
     * BitmapText objects work by taking a texture file and an XML file that describes the font structure.
-    * It then generates a new Sprite object for each letter of the text, proportionally spaced out and aligned to 
+    * It then generates a new Sprite object for each character of the text, proportionally spaced out and aligned to
     * match the font structure.
     * 
     * BitmapText objects are less flexible than Text objects, in that they have less features such as shadows, fills and the ability 
@@ -46544,7 +46544,7 @@ Phaser.GameObjectCreator.prototype = {
     * A RetroFont can be used as a texture for an Image or Sprite and optionally add it to the Cache.
     * A RetroFont uses a bitmap which contains fixed with characters for the font set. You use character spacing to define the set.
     * If you need variable width character support then use a BitmapText object instead. The main difference between a RetroFont and a BitmapText
-    * is that a RetroFont creates a single texture that you can apply to a game object, where-as a BitmapText creates one Sprite object per letter of text.
+    * is that a RetroFont creates a single texture that you can apply to a game object, where-as a BitmapText creates one Sprite object per character of text.
     * The texture can be asssigned or one or multiple images/sprites, but note that the text the RetroFont uses will be shared across them all,
     * i.e. if you need each Image to have different text in it, then you need to create multiple RetroFont objects.
     *
@@ -46570,7 +46570,7 @@ Phaser.GameObjectCreator.prototype = {
     * Create a new BitmapText object.
     *
     * BitmapText objects work by taking a texture file and an XML file that describes the font structure.
-    * It then generates a new Sprite object for each letter of the text, proportionally spaced out and aligned to 
+    * It then generates a new Sprite object for each character of the text, proportionally spaced out and aligned to
     * match the font structure.
     * 
     * BitmapText objects are less flexible than Text objects, in that they have less features such as shadows, fills and the ability 
@@ -54934,7 +54934,7 @@ Phaser.BitmapText = function (game, x, y, font, text, size, align) {
     this._prevAnchor = new Phaser.Point();
 
     /**
-    * @property {array} _glyphs - Private tracker for the letter sprite pool.
+    * @property {array} _glyphs - Private tracker for the character sprite pool.
     * @private
     */
     this._glyphs = [];
@@ -55209,7 +55209,7 @@ Phaser.BitmapText.prototype.updateText = function () {
 
             if (g)
             {
-                //  Sprite already exists in the glyphs pool, so we'll reuse it for this letter
+                //  Sprite already exists in the glyphs pool, so we'll reuse it for this character
                 g.texture = charData.texture;
             }
             else
@@ -75607,7 +75607,7 @@ Phaser.ScaleManager.prototype = {
     /**
     * Takes a Sprite or Image object and scales it to fit the given dimensions.
     * Scaling happens proportionally without distortion to the sprites texture.
-    * The letterBox parameter controls if scaling will produce a letter-box effect or zoom the
+    * The letterBox parameter controls if scaling will produce a character-box effect or zoom the
     * sprite until it fills the given values. Note that with letterBox set to false the scaled sprite may spill out over either
     * the horizontal or vertical sides of the target dimensions. If you wish to stop this you can crop the Sprite.
     *

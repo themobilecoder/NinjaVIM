@@ -5,7 +5,7 @@ function debug(state) {
         this.debug = {};
         this.debug.column = this.game.add.text(0, 0, "", style);
         this.debug.row = this.game.add.text(0, 12, "", style);
-        this.debug.letterUnderCursor = this.game.add.text(0, 24, "", style);
+        this.debug.characterUnderCursor = this.game.add.text(0, 24, "", style);
         originalCreate.apply(this, arguments);
     };
 
@@ -13,14 +13,14 @@ function debug(state) {
     state.prototype.render = function () {
         var column = this.vimContext.getCursorLocation().column;
         var row = this.vimContext.getCursorLocation().row;
-        var letterUnderCursor = this.vimContext.getCharacterFromCurrentCursorLocation();
+        var characterUnderCursor = this.vimContext.getCharacterFromCurrentCursorLocation();
         this.debug.column.text = "Vim Cursor COL: " + column;
         this.debug.row.text = "Vim Cursor ROW: " + row;
-        this.debug.letterUnderCursor.text = "Vim Cursor Letter: " + letterUnderCursor;
+        this.debug.characterUnderCursor.text = "Vim Cursor Character: " + characterUnderCursor;
 
         this.debug.column.bringToTop();
         this.debug.row.bringToTop();
-        this.debug.letterUnderCursor.bringToTop();
+        this.debug.characterUnderCursor.bringToTop();
 
         if (originalRender != undefined) {
             originalRender.apply(this, arguments);

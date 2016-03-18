@@ -28,7 +28,7 @@ IntroGameState.prototype = {
     },
     _createTiles: function () {
         var tileBuilder = new DefaultTileBuilder(this.game, this.tile_width, this.tile_height, this.config);
-        this.tilesManager = new TilesManager(this.game, this.grid_rows, this.grid_columns, tileBuilder);
+        this.tilesManager = new TilesCharacterManager(this.game, this.grid_rows, this.grid_columns, tileBuilder);
         this.tilesManager.init();
     },
     _setupKeyboard: function () {

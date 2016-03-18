@@ -1,6 +1,6 @@
-function TilesManager(game, maxColumns, maxRows, builder) {
+function TilesCharacterManager(game, maxColumns, maxRows, builder) {
     this.tiles = {};
-    this.letters = {};
+    this.characters = {};
     this.game = game;
     this.columns = maxColumns;
     this.rows = maxRows;
@@ -10,25 +10,25 @@ function TilesManager(game, maxColumns, maxRows, builder) {
     this.tilesContainer = this.game.add.group();
 }
 
-TilesManager.prototype = {
+TilesCharacterManager.prototype = {
     init: function () {
         for (var column = 0; column < this.columns; ++column) {
             for (var row = 0; row < this.rows; ++row) {
-                this.setLetterToTile("", column, row);
+                this.setCharacterToTile("", column, row);
                 this.draw(column, row, this.builder);
             }
         }
     },
-    setLetterToTile: function (letter, column, row) {
+    setCharacterToTile: function (character, column, row) {
         column = this._normalizeInputColumn(column);
         row = this._normalizeInputRow(row);
         var key = this._getKey(column, row);
-        this.letters[key] = letter;
-        return letter;
+        this.characters[key] = character;
+        return character;
     },
-    getLetterFromLocation: function (column, row) {
-        var letter = this.letters[this._getKey(column, row)];
-        return letter != undefined ? letter : '';
+    getCharacterFromLocation: function (column, row) {
+        var character = this.characters[this._getKey(column, row)];
+        return character != undefined ? character : '';
     },
     draw: function (column, row, builder) {
         builder = builder || new DefaultTileBuilder(this.game, this.tileWidth, this.tileHeight);
@@ -36,7 +36,7 @@ TilesManager.prototype = {
         var currentTile = this.tiles[key];
         if (currentTile != undefined) currentTile.clear();
 
-        var tileImage = builder.setLetter(this.letters[key]).build();
+        var tileImage = builder.setCharacter(this.characters[key]).build();
         this.tiles[key] = tileImage;
         this.tilesContainer.create(column * this.tileWidth, row * this.tileHeight, tileImage);
     },

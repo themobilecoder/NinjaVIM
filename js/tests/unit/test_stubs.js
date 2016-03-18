@@ -18,8 +18,8 @@ var gameStub = {
 };
 
 var builderStub = {
-    setLetter: function (letter) {
-        this.letter = letter;
+    setCharacter: function (character) {
+        this.character = character;
         return this;
     },
     build: function () {

@@ -55,17 +55,17 @@ VimContext.prototype = {
     setCharacterToCurrentCursorLocation: function(character) {
         var column = this.cursorManager.getCursorLocation().column;
         var row = this.cursorManager.getCursorLocation().row;
-        this.tilesManager.setLetterToTile(character, column, row);
+        this.tilesManager.setCharacterToTile(character, column, row);
     },
     getCharacterFromCurrentCursorLocation: function() {
         var column = this.cursorManager.getCursorLocation().column;
         var row = this.cursorManager.getCursorLocation().row;
-        return this.tilesManager.getLetterFromLocation(column, row);
+        return this.tilesManager.getCharacterFromLocation(column, row);
     },
     getCharacterFromCursorLocation: function(cursorLocation) {
         var column = cursorLocation.column;
         var row = cursorLocation.row;
-        return this.tilesManager.getLetterFromLocation(column, row);
+        return this.tilesManager.getCharacterFromLocation(column, row);
     },
     getRightBorder: function() {
         return this.cursorManager.getRightBorder();

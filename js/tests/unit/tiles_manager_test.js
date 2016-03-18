@@ -2,40 +2,40 @@ var maxColumns = 20;
 var maxRows = 20;
 
 QUnit.module('TilesManager Unit Test');
-QUnit.test("TilesManager should update letters in tiles", function (assert) {
-    var tilesManager = new TilesManager(gameStub, maxColumns, maxRows, builderStub);
+QUnit.test("TilesCharacterManager should update characters in tiles", function (assert) {
+    var tilesManager = new TilesCharacterManager(gameStub, maxColumns, maxRows, builderStub);
     assert.equal(tilesManager.tiles[tilesManager._getKey(0, 0)], undefined, "Tiles should undefined");
-    tilesManager.setLetterToTile('A', 0, 0);
-    assert.equal(tilesManager.getLetterFromLocation(0, 0), 'A', "Letter should have been set");
-    tilesManager.setLetterToTile('C', 19, 19);
-    assert.equal(tilesManager.getLetterFromLocation(19, 19), 'C', "Letter should have been set");
+    tilesManager.setCharacterToTile('A', 0, 0);
+    assert.equal(tilesManager.getCharacterFromLocation(0, 0), 'A', "Character should have been set");
+    tilesManager.setCharacterToTile('C', 19, 19);
+    assert.equal(tilesManager.getCharacterFromLocation(19, 19), 'C', "Character should have been set");
 });
 
-QUnit.test("TilesManager should prevent set letter at the edge when input is outside the boundary", function (assert) {
-    var tilesManager = new TilesManager(gameStub, maxColumns, maxRows, builderStub);
+QUnit.test("TilesCharacterManager should prevent set character at the edge when input is outside the boundary", function (assert) {
+    var tilesManager = new TilesCharacterManager(gameStub, maxColumns, maxRows, builderStub);
 
     var oneColumnPastTheBoundary = 20;
-    tilesManager.setLetterToTile('L', oneColumnPastTheBoundary, 0);
-    assert.equal(tilesManager.getLetterFromLocation(oneColumnPastTheBoundary, 0), '', 'No letter should be set past the column boundary');
+    tilesManager.setCharacterToTile('L', oneColumnPastTheBoundary, 0);
+    assert.equal(tilesManager.getCharacterFromLocation(oneColumnPastTheBoundary, 0), '', 'No character should be set past the column boundary');
 
     var rightMostColumn = 19;
-    assert.equal(tilesManager.getLetterFromLocation(rightMostColumn, 0), 'L', 'Letter should be set at the boundary');
+    assert.equal(tilesManager.getCharacterFromLocation(rightMostColumn, 0), 'L', 'Character should be set at the boundary');
 
     var oneRowPastTheBoundary = 20;
-    tilesManager.setLetterToTile('M', 0, oneRowPastTheBoundary);
-    assert.equal(tilesManager.getLetterFromLocation(0, oneRowPastTheBoundary), '', 'No letter should be set past the column boundary');
+    tilesManager.setCharacterToTile('M', 0, oneRowPastTheBoundary);
+    assert.equal(tilesManager.getCharacterFromLocation(0, oneRowPastTheBoundary), '', 'No character should be set past the column boundary');
 
     var lowestRow = 19;
-    assert.equal(tilesManager.getLetterFromLocation(0, lowestRow), 'M', 'Letter should be set at the boundary');
+    assert.equal(tilesManager.getCharacterFromLocation(0, lowestRow), 'M', 'Character should be set at the boundary');
 
     var oneColumnLeftOfBoundary = -1;
     var oneRowAboveBoundary = -1;
-    tilesManager.setLetterToTile('N', oneColumnLeftOfBoundary, oneRowAboveBoundary);
-    assert.equal(tilesManager.getLetterFromLocation(oneColumnLeftOfBoundary, oneRowAboveBoundary), '', 'No letter should be set past the column boundary');
+    tilesManager.setCharacterToTile('N', oneColumnLeftOfBoundary, oneRowAboveBoundary);
+    assert.equal(tilesManager.getCharacterFromLocation(oneColumnLeftOfBoundary, oneRowAboveBoundary), '', 'No character should be set past the column boundary');
 
     var upMostRow = 0;
     var leftMostColumn = 0;
-    assert.equal(tilesManager.getLetterFromLocation(leftMostColumn, upMostRow), 'N', 'Letter should be set at the boundary');
+    assert.equal(tilesManager.getCharacterFromLocation(leftMostColumn, upMostRow), 'N', 'Character should be set at the boundary');
 
 
 });
