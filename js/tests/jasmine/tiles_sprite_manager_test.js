@@ -17,8 +17,25 @@ describe("Tile Sprite Manager location management", function () {
     it("should not be able to set sprites outside boundaries", function() {
         expect(tilesSpriteManager.getSpriteFromLocation(-1, 0)).toBeUndefined();
 
-        tilesSpriteManager.buildSprite(-1 ,0);
-        expect(tilesSpriteManager.getSpriteFromLocation(-1, 0)).toBeUndefined();
+        var pastLeftOfTheBorder = -1;
+        tilesSpriteManager.buildSprite(pastLeftOfTheBorder ,0);
+        expect(tilesSpriteManager.getSpriteFromLocation(pastLeftOfTheBorder, 0)).toBeUndefined();
+        expect(tilesSpriteManager.getSpriteFromLocation(0, 0)).toBeUndefined();
+
+        var pastRightOfTheBorder = 20;
+        tilesSpriteManager.buildSprite(pastRightOfTheBorder ,0);
+        expect(tilesSpriteManager.getSpriteFromLocation(pastRightOfTheBorder, 0)).toBeUndefined();
+        expect(tilesSpriteManager.getSpriteFromLocation(19, 0)).toBeUndefined();
+
+        var pastUpOfTheBorder = -1;
+        tilesSpriteManager.buildSprite(0 ,pastUpOfTheBorder);
+        expect(tilesSpriteManager.getSpriteFromLocation(0, pastUpOfTheBorder)).toBeUndefined();
+        expect(tilesSpriteManager.getSpriteFromLocation(0, 0)).toBeUndefined();
+
+        var pastDownOfTheBorder = 20;
+        tilesSpriteManager.buildSprite(0 ,pastDownOfTheBorder);
+        expect(tilesSpriteManager.getSpriteFromLocation(0, pastDownOfTheBorder)).toBeUndefined();
+        expect(tilesSpriteManager.getSpriteFromLocation(0, 19)).toBeUndefined();
 
     })
 });

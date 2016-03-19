@@ -11,8 +11,9 @@ TilesSpriteManager.prototype = {
         return this.tiles[key];
     },
     buildSprite: function (column, row) {
-        column = this.helper.normalizeInputColumn(column);
-        row = this.helper.normalizeInputColumn(row);
+        if (column < 0 || column >= this.maxColumns || row < 0 || row >= this.maxRows) {
+            return;
+        }
         var key = this.helper.getKey(column, row);
         this.tiles[key] = '';
     }
