@@ -10,11 +10,11 @@ TilesSpriteManager.prototype = {
         var key = this.helper.getKey(column, row);
         return this.tiles[key];
     },
-    buildSprite: function (column, row) {
+    buildSprite: function (column, row, builder) {
         if (column < 0 || column >= this.maxColumns || row < 0 || row >= this.maxRows) {
             return;
         }
         var key = this.helper.getKey(column, row);
-        this.tiles[key] = '';
+        this.tiles[key] = builder.build();
     }
 };
