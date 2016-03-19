@@ -4,7 +4,7 @@ var maxRows = 20;
 QUnit.module('TilesManager Unit Test');
 QUnit.test("TilesCharacterManager should update characters in tiles", function (assert) {
     var tilesManager = new TilesCharacterManager(maxColumns, maxRows);
-    assert.equal(tilesManager.characters[tilesManager._getKey(0, 0)], undefined, "Tiles should undefined");
+    assert.equal(tilesManager.getCharacterFromLocation(0, 0), '', "Tiles should undefined");
     tilesManager.setCharacterToTile('A', 0, 0);
     assert.equal(tilesManager.getCharacterFromLocation(0, 0), 'A', "Character should have been set");
     tilesManager.setCharacterToTile('C', 19, 19);
@@ -12,7 +12,7 @@ QUnit.test("TilesCharacterManager should update characters in tiles", function (
 });
 
 QUnit.test("TilesCharacterManager should prevent set character at the edge when input is outside the boundary", function (assert) {
-    var tilesManager = new TilesCharacterManager(gameStub, maxColumns, maxRows, builderStub);
+    var tilesManager = new TilesCharacterManager(maxColumns, maxRows);
 
     var oneColumnPastTheBoundary = 20;
     tilesManager.setCharacterToTile('L', oneColumnPastTheBoundary, 0);

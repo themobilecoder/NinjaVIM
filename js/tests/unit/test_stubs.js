@@ -17,16 +17,6 @@ var gameStub = {
     }
 };
 
-var builderStub = {
-    setCharacter: function (character) {
-        this.character = character;
-        return this;
-    },
-    build: function () {
-        return this;
-    }
-};
-
 var testConfig = {
     cursorAlpha : 1
 };

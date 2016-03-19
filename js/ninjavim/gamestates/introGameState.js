@@ -31,8 +31,7 @@ IntroGameState.prototype = {
         this.game.stage.backgroundColor = this.config.backgroundColor;
     },
     _initializeCharactersInTiles: function () {
-        var tileBuilder = new DefaultTileBuilder(this.game, this.tile_width, this.tile_height, this.config);
-        this.tilesManager = new TilesCharacterManager(this.game, this.grid_rows, this.grid_columns, tileBuilder);
+        this.tilesManager = new TilesCharacterManager(this.grid_rows, this.grid_columns);
         this.tilesManager.init();
     },
     _setupKeyboard: function () {

@@ -43,7 +43,7 @@ QUnit.test('Game should handle movement inputs in NORMAL mode', function (assert
 QUnit.test('Game should be able to transition to INSERT Mode from NORMAL Mode', function(assert) {
     var tileCount = 20;
     var cursorManager = new CursorManager(gameStub, tileCount, tileCount);
-    var tilesManager = new TilesCharacterManager(gameStub, tileCount, tileCount, builderStub);
+    var tilesManager = new TilesCharacterManager(tileCount, tileCount);
     var keyboardHandlerManager = new KeyboardHandlerManager(gameStub);
     var vimContext = new VimContext(cursorManager, tilesManager, keyboardHandlerManager);
 
@@ -67,7 +67,7 @@ QUnit.module('Vim Insert Mode Integration Test');
 QUnit.test('Should be able to type characters in INSERT Mode', function(assert) {
     var tileCount = 20;
     var cursorManager = new CursorManager(gameStub, tileCount, tileCount);
-    var tilesManager = new TilesCharacterManager(gameStub, tileCount, tileCount, builderStub);
+    var tilesManager = new TilesCharacterManager(tileCount, tileCount);
     var keyboardHandlerManager = new KeyboardHandlerManager(gameStub);
     var vimContext = new VimContext(cursorManager, tilesManager, keyboardHandlerManager);
 
@@ -105,7 +105,7 @@ QUnit.test('Should be able to type characters in INSERT Mode', function(assert) 
     QUnit.test('Should move cursor to next row when typing in INSERT mode reached the right end', function(assert) {
         var tileCount = 20;
         var cursorManager = new CursorManager(gameStub, tileCount, tileCount);
-        var tilesManager = new TilesCharacterManager(gameStub, tileCount, tileCount, builderStub);
+        var tilesManager = new TilesCharacterManager(tileCount, tileCount);
         var keyboardHandlerManager = new KeyboardHandlerManager(gameStub);
         var vimContext = new VimContext(cursorManager, tilesManager, keyboardHandlerManager);
 
