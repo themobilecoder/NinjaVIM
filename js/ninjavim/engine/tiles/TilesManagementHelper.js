@@ -38,5 +38,5 @@ TilesManagementHelper.prototype = {
         } else {
             return row;
         }
-    }
+    },
 };
