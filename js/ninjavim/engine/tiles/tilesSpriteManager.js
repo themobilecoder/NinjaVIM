@@ -14,6 +14,7 @@ TilesSpriteManager.prototype = {
         if (column < 0 || column >= this.maxColumns || row < 0 || row >= this.maxRows) {
             return;
         }
+        builder.setLocation(column, row);
         var key = this.helper.getKey(column, row);
         this.tiles[key] = builder.build();
     }

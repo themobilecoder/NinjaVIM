@@ -5,7 +5,7 @@ describe("Tile Sprite Manager location management", function () {
 
     beforeEach(function() {
         tilesSpriteManager = new TilesSpriteManager(maxNumberOfColumns, maxNumberOfRows);
-        builder = jasmine.createSpyObj('builder', ['build']);
+        builder = jasmine.createSpyObj('builder', ['build', 'setLocation']);
         builder.build.and.returnValue('');
     });
 
@@ -46,14 +46,14 @@ describe("Tile Sprite Manager using a Sprite Builder", function() {
 
     it("should use a builder when building sprites", function() {
         var tilesSpriteManager = new TilesSpriteManager(20, 20);
-        var spriteBuilderMock = new DefaultTileBuilder();
 
-        spyOn(spriteBuilderMock,'build').and.returnValue(jasmine.any(Object));
+        var builder = jasmine.createSpyObj('builder', ['build', 'setLocation']);
+        builder.build.and.returnValue('');
 
         expect(tilesSpriteManager.getSpriteFromLocation(0, 0)).toBeUndefined();
-        tilesSpriteManager.buildSprite(0, 0, spriteBuilderMock);
+        tilesSpriteManager.buildSprite(0, 0, builder);
 
-        expect(spriteBuilderMock.build).toHaveBeenCalled();
+        expect(builder.build).toHaveBeenCalled();
         expect(tilesSpriteManager.getSpriteFromLocation(0, 0)).not.toBeUndefined();
     });
 

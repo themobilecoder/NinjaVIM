@@ -12,7 +12,11 @@ var GameConfig = {
     cursorImageJson : 'assets/ninja.json',
     cursorAlpha : 1,
 
-    tileAlpha : 1
+    tileAlpha : 1,
+
+    starSprite : 'star',
+    starAsset : 'assets/star.png'
+
 };
 
 
