@@ -1134,7 +1134,7 @@ var Circle = _dereq_('../shapes/Circle'),
 module.exports = NaiveBroadphase;
 
 /**
- * Naive broadphase implementation. Does N^2 tests.
+ * Naive broadphase implementation. Does N^2 test.
  *
  * @class NaiveBroadphase
  * @constructor
@@ -13474,7 +13474,7 @@ var hitTest_tmp1 = vec2.create(),
 /**
  * Test if a world point overlaps bodies
  * @method hitTest
- * @param  {Array}  worldPoint  Point to use for intersection tests
+ * @param  {Array}  worldPoint  Point to use for intersection test
  * @param  {Array}  bodies      A list of objects to check for intersection
  * @param  {Number} precision   Used for matching against particles and lines. Adds some margin to these infinitesimal objects.
  * @return {Array}              Array of bodies that overlap the point
@@ -73823,7 +73823,7 @@ Phaser.ScaleManager = function (game, width, height) {
     * - `wasIncorrect`, a boolean - True if the previous orientation was last determined to be incorrect.
     *
     * Access the current orientation and validity with `scale.screenOrientation` and `scale.incorrectOrientation`.
-    * Thus the following tests can be done:
+    * Thus the following test can be done:
     *
     *     // The orientation itself changed:
     *     scale.screenOrientation !== prevOrientation
@@ -84824,7 +84824,7 @@ Phaser.Physics.P2.prototype = {
     * (if any) by checking the Body.parent.sprite property. Body.parent is a Phaser.Physics.P2.Body property.
     *
     * @method Phaser.Physics.P2#hitTest
-    * @param {Phaser.Point} worldPoint - Point to use for intersection tests. The points values must be in world (pixel) coordinates.
+    * @param {Phaser.Point} worldPoint - Point to use for intersection test. The points values must be in world (pixel) coordinates.
     * @param {Array<Phaser.Physics.P2.Body|Phaser.Sprite|p2.Body>} [bodies] - A list of objects to check for intersection. If not given it will check Phaser.Physics.P2.world.bodies (i.e. all world bodies)
     * @param {number} [precision=5] - Used for matching against particles and lines. Adds some margin to these infinitesimal objects.
     * @param {boolean} [filterStatic=false] - If true all Static objects will be removed from the results array.
