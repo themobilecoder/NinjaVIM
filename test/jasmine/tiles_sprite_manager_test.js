@@ -58,3 +58,43 @@ describe("Tile Sprite Manager using a Sprite Builder", function() {
     });
 
 });
+
+describe("Tile Sprite Manager deleting a sprite", function() {
+    var tilesSpriteManager, builder, spriteStub;
+
+    beforeEach(function() {
+        tilesSpriteManager = new TilesSpriteManager(20, 20);
+
+        builder = jasmine.createSpyObj('builder', ['build', 'setLocation']);
+        spriteStub = jasmine.createSpyObj('sprite', ['destroy']);
+        builder.build.and.returnValue(spriteStub);
+    });
+
+    it("should not do anything when sprite does not exist", function() {
+        tilesSpriteManager.destroySprite(0, 0);
+        expect(tilesSpriteManager.getSpriteFromLocation(0, 0)).toBeUndefined();
+        expect(spriteStub.destroy).not.toHaveBeenCalled();
+    });
+
+    it("should destroy sprite in a location", function() {
+        tilesSpriteManager.buildSprite(0, 0, builder);
+        expect(tilesSpriteManager.getSpriteFromLocation(0, 0)).not.toBeUndefined();
+
+        tilesSpriteManager.destroySprite(0, 0);
+        expect(tilesSpriteManager.getSpriteFromLocation(0, 0)).toBeUndefined();
+        expect(spriteStub.destroy).toHaveBeenCalled();
+    });
+
+    it("should animate destruction or removal of sprite if available", function() {
+
+        var destroyerStub = jasmine.createSpyObj('destroyer', ['destroy']);
+
+        tilesSpriteManager.buildSprite(0, 0, builder);
+
+        tilesSpriteManager.destroySprite(0, 0, destroyerStub);
+
+        expect(spriteStub.destroy).not.toHaveBeenCalled();
+        expect(destroyerStub.destroy).toHaveBeenCalledWith(spriteStub);
+    })
+
+});

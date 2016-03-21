@@ -14,8 +14,24 @@ TilesSpriteManager.prototype = {
         if (column < 0 || column >= this.maxColumns || row < 0 || row >= this.maxRows) {
             return;
         }
-        builder.setLocation(column, row);
         var key = this.helper.getKey(column, row);
+        if (this.tiles[key]) {
+            this.tiles[key].destroy();
+        }
+
+        builder.setLocation(column, row);
         this.tiles[key] = builder.build();
+    },
+    destroySprite : function(column, row, destroyer) {
+        var key = this.helper.getKey(column, row);
+        var currentSpriteInTile = this.tiles[key];
+        if (currentSpriteInTile) {
+            this.tiles[key] = undefined;
+            if (!destroyer) {
+                currentSpriteInTile.destroy();
+            } else {
+                destroyer.destroy(currentSpriteInTile);
+            }
+        }
     }
 };
