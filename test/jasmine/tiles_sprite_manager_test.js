@@ -95,6 +95,20 @@ describe("Tile Sprite Manager deleting a sprite", function() {
 
         expect(spriteStub.destroy).not.toHaveBeenCalled();
         expect(destroyerStub.destroy).toHaveBeenCalledWith(spriteStub);
-    })
+    });
+
+    it("should be able to determine if no tile sprites are present", function() {
+        expect(tilesSpriteManager.isEmpty()).toEqual(true);
+
+        tilesSpriteManager.buildSprite(0, 0, builder);
+        tilesSpriteManager.buildSprite(19, 19, builder);
+        expect(tilesSpriteManager.isEmpty()).toEqual(false);
+
+        tilesSpriteManager.destroySprite(0, 0);
+        expect(tilesSpriteManager.isEmpty()).toEqual(false);
+
+        tilesSpriteManager.destroySprite(19, 19);
+        expect(tilesSpriteManager.isEmpty()).toEqual(true);
+    });
 
 });

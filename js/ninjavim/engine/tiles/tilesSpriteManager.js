@@ -26,12 +26,19 @@ TilesSpriteManager.prototype = {
         var key = this.helper.getKey(column, row);
         var currentSpriteInTile = this.tiles[key];
         if (currentSpriteInTile) {
-            this.tiles[key] = undefined;
+            delete this.tiles[key];
             if (!destroyer) {
                 currentSpriteInTile.destroy();
             } else {
                 destroyer.destroy(currentSpriteInTile);
             }
+        }
+    },
+    isEmpty : function() {
+        if (Object.keys(this.tiles).length === 0) {
+            return true;
+        }  else {
+            return false;
         }
     }
 };
