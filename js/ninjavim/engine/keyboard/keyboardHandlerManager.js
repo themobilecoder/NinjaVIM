@@ -1,8 +1,8 @@
-function KeyboardHandlerManager(game) {
+function KeyboardHandlerManager(game, keyboard) {
     this.context = game;
     this.game = this.context.game;
-    this.keys = {};
     this.keyHandlers = {};
+    this.keys = keyboard == undefined ? {} : keyboard.getKeys();
 }
 
 KeyboardHandlerManager.prototype = {

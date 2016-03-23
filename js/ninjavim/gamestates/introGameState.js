@@ -6,22 +6,21 @@ var IntroGameState = function (game) {
 IntroGameState.prototype = {
     init: function () {
         this.context = this;
-        this.grid_rows = this.config.numberOfRows;
-        this.grid_columns = this.config.numberOfColumns;
-        this.tile_width = this.game.world.width / this.grid_columns;
-        this.tile_height = this.game.world.height / this.grid_rows;
-        this.cursorManager = new CursorManager(this.game, this.grid_columns, this.grid_rows, this.config);
-        this.keyboardHandlerManager = new KeyboardHandlerManager(this.context);
-        this.keyboardHandlerManager.setKeyboard(new PhaserKeyboard(this.game));
+        this.numberOfColumns = this.config.numberOfColumns;
+        this.numberOfRows = this.config.numberOfRows;
+        this.tileWidth = this.game.world.width / this.numberOfColumns;
+        this.tileHeight = this.game.world.height / this.numberOfRows;
+        this.cursorManager = new CursorManager(this.game, this.numberOfColumns, this.numberOfRows, this.config);
+        this.keyboardHandlerManager = new KeyboardHandlerManager(this.context, new PhaserKeyboard(this.game));
+        this.tilesCharacterManager = new TilesCharacterManager(this.numberOfRows, this.numberOfColumns);
+        this.vimContext = new VimContext(this.cursorManager, this.tilesCharacterManager, this.keyboardHandlerManager);
     },
     preload: function () {
         this._initializeGameAssets();
     },
     create: function () {
-        this._initializeCharactersInTiles();
         this._initializeVimContext();
-        this._setupKeyboard();
-        this.cursorManager.createSprite(this.tile_width, this.tile_height);
+        this.cursorManager.createSprite(this.tileWidth, this.tileHeight);
     },
     update: function () {
         this._shiftButtonProcessor();
@@ -30,15 +29,9 @@ IntroGameState.prototype = {
         this.cursorManager.loadAsset();
         this.game.stage.backgroundColor = this.config.backgroundColor;
     },
-    _initializeCharactersInTiles: function () {
-        this.tilesManager = new TilesCharacterManager(this.grid_rows, this.grid_columns);
-        this.tilesManager.init();
-    },
-    _setupKeyboard: function () {
-        this.vimContext.setKeyboardHandler(new NormalModeKeyboardHandler(this.vimContext));
-    },
     _initializeVimContext: function() {
-        this.vimContext = new VimContext(this.cursorManager, this.tilesManager, this.keyboardHandlerManager);
+        this.vimContext = new VimContext(this.cursorManager, this.tilesCharacterManager, this.keyboardHandlerManager);
+        this.vimContext.setKeyboardHandler(new NormalModeKeyboardHandler(this.vimContext));
     },
     _shiftButtonProcessor: function () {
         this.keyboardHandlerManager.isShiftDown ? this.vimContext.setShiftPressed() : this.vimContext.setShiftReleased();

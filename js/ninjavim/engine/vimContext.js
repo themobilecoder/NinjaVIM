@@ -1,23 +1,12 @@
 var NinjaVim = NinjaVim || {};
 
-function VimContext(cursorManager, tilesManager, keyboardHandlerManager) {
+function VimContext(cursorManager, tilesCharacterManager, keyboardHandlerManager) {
     this.cursorManager = {};
-    this.tilesManager = {};
     this.vimMode = VimContext.MODE.UNKNOWN;
     this.keyboardHandlerManager = keyboardHandlerManager;
+    this.cursorManager = cursorManager;
+    this.tilesCharacterManager = tilesCharacterManager;
     this.shiftIsDown = false;
-    _pointManagersToGlobal(this);
-    _setDefaultManagers(this, cursorManager, tilesManager);
-
-    function _pointManagersToGlobal(self) {
-        self.cursorManager = NinjaVim.CursorManager;
-        self.tilesManager = NinjaVim.TilesManager;
-    }
-    function _setDefaultManagers(self, cursorManager, tilesManager) {
-        self.cursorManager = cursorManager;
-        self.tilesManager = tilesManager;
-    }
-
 }
 
 VimContext.prototype = {
@@ -55,17 +44,17 @@ VimContext.prototype = {
     setCharacterToCurrentCursorLocation: function(character) {
         var column = this.cursorManager.getCursorLocation().column;
         var row = this.cursorManager.getCursorLocation().row;
-        this.tilesManager.setCharacterToTile(character, column, row);
+        this.tilesCharacterManager.setCharacterToTile(character, column, row);
     },
     getCharacterFromCurrentCursorLocation: function() {
         var column = this.cursorManager.getCursorLocation().column;
         var row = this.cursorManager.getCursorLocation().row;
-        return this.tilesManager.getCharacterFromLocation(column, row);
+        return this.tilesCharacterManager.getCharacterFromLocation(column, row);
     },
     getCharacterFromCursorLocation: function(cursorLocation) {
         var column = cursorLocation.column;
         var row = cursorLocation.row;
-        return this.tilesManager.getCharacterFromLocation(column, row);
+        return this.tilesCharacterManager.getCharacterFromLocation(column, row);
     },
     getRightBorder: function() {
         return this.cursorManager.getRightBorder();
