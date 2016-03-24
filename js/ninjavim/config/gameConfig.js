@@ -1,5 +1,5 @@
 var GameConfig = {
-    debugMode : true,
+    debugMode : false,
 
     gameWidth : 800, //Pixels
     gameHeight : 800, //Pixels
@@ -8,6 +8,10 @@ var GameConfig = {
 
     backgroundColor: '#DDDDDD',
 
+    progressBar: 'progress_bar',
+    progressBarAsset: 'assets/progress_bar.png',
+
+    cursorSprite: 'cursor',
     cursorImage : 'assets/ninja.png',
     cursorImageJson : 'assets/ninja.json',
     cursorAlpha : 1,
@@ -20,7 +24,8 @@ var GameConfig = {
     smokeSprite : 'smoke',
     smokeAsset : 'assets/smoke.png',
     smokeAssetJson : 'assets/smoke.json',
-    smokeAudio : 'assets/smoke.mp3'
+    smokeAudio : 'smoke',
+    smokeAudioAsset : 'assets/smoke.mp3'
 };
 
 

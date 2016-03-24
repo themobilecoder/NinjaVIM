@@ -13,6 +13,8 @@ if(NinjaVim.config.debugMode) {
     debug(IntroGameState);
 }
 
+NinjaVim.game.state.add('boot', BootState);
+NinjaVim.game.state.add('loading_screen', LoadingScreenState);
 NinjaVim.game.state.add('intro', IntroGameState);
-NinjaVim.game.state.start('intro');
+NinjaVim.game.state.start('boot');
 

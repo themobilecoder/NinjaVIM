@@ -8,11 +8,6 @@ function CursorManager(game, numberOfColumns, numberOfRows, config) {
 }
 
 CursorManager.prototype = {
-    loadAsset: function () {
-        var cursorAsset = this.config.cursorImage;
-        var cursorAssetJson = this.config.cursorImageJson;
-        this.game.load.atlasJSONHash('cursor', cursorAsset, cursorAssetJson);
-    },
     createSprite: function (width, height) {
         this.staticCursorWidth = width;
         this.staticCursorHeight = height;
@@ -68,7 +63,7 @@ CursorManager.prototype = {
         this.cursor.y = this.currentCursorLocation.row * this.staticCursorHeight;
     },
     _setupCursor: function () {
-        this.cursor = this.game.add.sprite(0, 0, 'cursor');
+        this.cursor = this.game.add.sprite(0, 0, this.config.cursorSprite);
         this.cursor.alpha = this.config.cursorAlpha;
         this.cursor.width = this.staticCursorWidth;
         this.cursor.height = this.staticCursorHeight;
