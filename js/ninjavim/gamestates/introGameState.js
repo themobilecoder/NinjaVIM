@@ -14,16 +14,24 @@ IntroGameState.prototype = {
         this.keyboardHandlerManager = new KeyboardHandlerManager(this.context, new PhaserKeyboard(this.game));
         this.tilesCharacterManager = new TilesCharacterManager(this.numberOfRows, this.numberOfColumns);
         this.vimContext = new VimContext(this.cursorManager, this.tilesCharacterManager, this.keyboardHandlerManager);
+        this.tilesSpriteManager = new TilesSpriteManager(this.config.numberOfColumns, this.config.numberOfRows);
+        this.destroyerWithSmoke = new DestroyerWithSmoke(this.game, this.config);
     },
     preload: function () {
         this._initializeGameAssets();
+        this._initializeTileSprites();
     },
     create: function () {
         this._initializeVimContext();
+        this._generateStarSprites();
         this.cursorManager.createSprite(this.tileWidth, this.tileHeight);
+
+        this.gameIsFinished = false;
     },
     update: function () {
         this._shiftButtonProcessor();
+        this._cursorAndStarCollisionProcessor();
+        this._finishGameProcessor();
     },
     _initializeGameAssets: function () {
         this.cursorManager.loadAsset();
@@ -33,7 +41,36 @@ IntroGameState.prototype = {
         this.vimContext = new VimContext(this.cursorManager, this.tilesCharacterManager, this.keyboardHandlerManager);
         this.vimContext.setKeyboardHandler(new NormalModeKeyboardHandler(this.vimContext));
     },
+    _initializeTileSprites: function () {
+        this.game.load.atlasJSONHash('smoke', this.config.smokeAsset, this.config.smokeAssetJson);
+        this.game.load.image('star', this.config.starAsset, this.config.starSprite);
+        this.game.load.audio('smoke', [this.config.smokeAudio]);
+    },
     _shiftButtonProcessor: function () {
         this.keyboardHandlerManager.isShiftDown ? this.vimContext.setShiftPressed() : this.vimContext.setShiftReleased();
+    },
+    _cursorAndStarCollisionProcessor: function () {
+        var cursorColumn = this.cursorManager.getCursorLocation().column;
+        var cursorRow = this.cursorManager.getCursorLocation().row;
+        if (this.tilesSpriteManager.getSpriteFromLocation(cursorColumn, cursorRow)) {
+            this.tilesSpriteManager.destroySprite(cursorColumn, cursorRow, this.destroyerWithSmoke);
+        }
+    },
+    _generateStarSprites: function () {
+        var starTileBuilder = new StarTileBuilder(this.game, this.config);
+        for (var col = 0; col < this.config.numberOfColumns; ++col) {
+            for (var row = 0; row < this.config.numberOfRows; ++row) {
+                this.tilesSpriteManager.buildSprite(col, row, starTileBuilder);
+            }
+        }
+    },
+    _restartGame: function() {
+        this.game.state.start('intro');
+    },
+    _finishGameProcessor: function () {
+        if (this.tilesSpriteManager.isEmpty() && !this.gameIsFinished) {
+            this.gameIsFinished = true;
+            this.game.time.events.add(Phaser.Timer.SECOND * 3, this._restartGame, this);
+        }
     }
 };

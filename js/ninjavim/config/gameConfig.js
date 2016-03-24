@@ -3,8 +3,8 @@ var GameConfig = {
 
     gameWidth : 800, //Pixels
     gameHeight : 800, //Pixels
-    numberOfRows : 20,
-    numberOfColumns : 20,
+    numberOfRows : 10,
+    numberOfColumns : 10,
 
     backgroundColor: '#DDDDDD',
 
@@ -15,8 +15,12 @@ var GameConfig = {
     tileAlpha : 1,
 
     starSprite : 'star',
-    starAsset : 'assets/star.png'
+    starAsset : 'assets/star.png',
 
+    smokeSprite : 'smoke',
+    smokeAsset : 'assets/smoke.png',
+    smokeAssetJson : 'assets/smoke.json',
+    smokeAudio : 'assets/smoke.mp3'
 };
 
 
