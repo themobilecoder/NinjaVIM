@@ -9,6 +9,9 @@ NinjaVim.game = new Phaser.Game(
     ''
 );
 
+
+injectTimerToState(IntroGameState);
+
 if(NinjaVim.config.debugMode) {
     debug(IntroGameState);
 }

@@ -23,6 +23,7 @@ IntroGameState.prototype = {
         this._initializeVimContext();
         this._generateStarsToCollect();
         this.cursorManager.createSprite(this.tileWidth, this.tileHeight);
+        this.startGameTime();
 
         this.gameIsFinished = false;
     },
@@ -59,6 +60,10 @@ IntroGameState.prototype = {
     _finishGameProcessor: function () {
         if (this.tilesSpriteManager.isEmpty() && !this.gameIsFinished) {
             this.gameIsFinished = true;
+            var totalTime = this.game.add.text(this.game.world.centerX, this.game.world.centerY, "Total Time: " + this.getElapsedTimeInSeconds() + ' seconds', {font: 'Courier 128px', fill: "#FF0000"});
+            totalTime.anchor.set(0.5);
+            console.log(totalTime.width);
+            console.log(totalTime.height);
             this.game.time.events.add(Phaser.Timer.SECOND * 3, this._restartGame, this);
         }
     }

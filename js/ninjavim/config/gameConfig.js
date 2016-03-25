@@ -1,5 +1,5 @@
 var GameConfig = {
-    debugMode : false,
+    debugMode : true,
 
     gameWidth : 800, //Pixels
     gameHeight : 800, //Pixels
