@@ -16,6 +16,9 @@ var GameConfig = {
     cursorImageJson : 'assets/ninja.json',
     cursorAlpha : 1,
 
+    messageBox: 'message_box',
+    messageBoxSprite: 'assets/message_box.png',
+
     tileAlpha : 1,
 
     starSprite : 'star',

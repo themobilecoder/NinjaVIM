@@ -60,9 +60,21 @@ IntroGameState.prototype = {
     _finishGameProcessor: function () {
         if (this.tilesSpriteManager.isEmpty() && !this.gameIsFinished) {
             this.gameIsFinished = true;
-            var totalTime = this.game.add.text(this.game.world.centerX, this.game.world.centerY, "Total Time: " + this.getElapsedTimeInSeconds() + ' seconds', {font: 'Courier 128px', fill: "#FF0000"});
-            totalTime.anchor.set(0.5);
             this.game.time.events.add(Phaser.Timer.SECOND * 3, this._restartGame, this);
+            this._showMessageBox();
         }
+    },
+    _showMessageBox: function () {
+        var messageBox = this.game.add.sprite(this.game.world.centerX, this.game.world.centerY, 'message_box');
+        messageBox.originalWidth = messageBox.width;
+        messageBox.originalHeight = messageBox.height;
+        messageBox.anchor.set(0.5);
+        messageBox.alpha = 0.9;
+        messageBox.scale.setTo(0.3);
+
+        var text = "Total Time: " + this.getElapsedTimeInSeconds() + 's';
+        var message = this.game.add.text(0, 0, text, {font: '64px Arial', fill: '#FFFFFF', wordWrap: true, wordWrapWidth: messageBox.originalWidth, align: 'center'});
+        message.anchor.set(0.5);
+        messageBox.addChild(message);
     }
 };

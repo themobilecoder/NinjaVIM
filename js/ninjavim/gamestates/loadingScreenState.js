@@ -30,7 +30,8 @@ LoadingScreenState.prototype = {
     _preloadGameAssets: function () {
         this.game.load.atlasJSONHash(this.config.cursorSprite, this.config.cursorImage, this.config.cursorImageJson);
         this.game.load.atlasJSONHash(this.config.smokeSprite, this.config.smokeAsset, this.config.smokeAssetJson);
-        this.game.load.image(this.config.starSprite, this.config.starAsset, this.config.starSprite);
+        this.game.load.image(this.config.starSprite, this.config.starAsset);
         this.game.load.audio(this.config.smokeAudio, [this.config.smokeAudioAsset]);
+        this.game.load.image(this.config.messageBox, this.config.messageBoxSprite);
     },
 };
