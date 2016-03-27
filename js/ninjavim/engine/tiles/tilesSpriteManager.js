@@ -19,7 +19,7 @@ TilesSpriteManager.prototype = {
             this.tiles[key].destroy();
         }
 
-        builder.setLocation(column, row);
+        builder.withLocation(column, row);
         this.tiles[key] = builder.build();
     },
     destroySprite : function(column, row, destroyer) {

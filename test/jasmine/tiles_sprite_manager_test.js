@@ -5,7 +5,7 @@ describe("Tile Sprite Manager location management", function () {
 
     beforeEach(function() {
         tilesSpriteManager = new TilesSpriteManager(maxNumberOfColumns, maxNumberOfRows);
-        builder = jasmine.createSpyObj('builder', ['build', 'setLocation']);
+        builder = jasmine.createSpyObj('builder', ['build', 'withLocation']);
         builder.build.and.returnValue('');
     });
 
@@ -47,7 +47,7 @@ describe("Tile Sprite Manager using a Sprite Builder", function() {
     it("should use a builder when building sprites", function() {
         var tilesSpriteManager = new TilesSpriteManager(20, 20);
 
-        var builder = jasmine.createSpyObj('builder', ['build', 'setLocation']);
+        var builder = jasmine.createSpyObj('builder', ['build', 'withLocation']);
         builder.build.and.returnValue('');
 
         expect(tilesSpriteManager.getSpriteFromLocation(0, 0)).toBeUndefined();
@@ -65,7 +65,7 @@ describe("Tile Sprite Manager deleting a sprite", function() {
     beforeEach(function() {
         tilesSpriteManager = new TilesSpriteManager(20, 20);
 
-        builder = jasmine.createSpyObj('builder', ['build', 'setLocation']);
+        builder = jasmine.createSpyObj('builder', ['build', 'withLocation']);
         spriteStub = jasmine.createSpyObj('sprite', ['destroy']);
         builder.build.and.returnValue(spriteStub);
     });
