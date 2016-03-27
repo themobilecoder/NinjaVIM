@@ -21,6 +21,7 @@ IntroGameState.prototype = {
     },
     create: function () {
         this._initializeVimContext();
+        this._prepareBackground();
         this._generateSpritesToCollect();
         this.cursorManager.createSprite(this.tileWidth, this.tileHeight);
         this.startGameTime();
@@ -64,8 +65,13 @@ IntroGameState.prototype = {
             this._showMessageBox();
         }
     },
+    _prepareBackground : function() {
+        var hjkl = this.game.add.sprite(this.game.world.centerX, this.game.world.centerY, this.config.hjklSprite);
+        hjkl.anchor.set(0.5);
+        hjkl.alpha = 0.7;
+    },
     _showMessageBox: function () {
-        var messageBox = this.game.add.sprite(this.game.world.centerX, this.game.world.centerY, 'message_box');
+        var messageBox = this.game.add.sprite(this.game.world.centerX, this.game.world.centerY - 100, 'message_box');
         messageBox.originalWidth = messageBox.width;
         messageBox.originalHeight = messageBox.height;
         messageBox.anchor.set(0.5);

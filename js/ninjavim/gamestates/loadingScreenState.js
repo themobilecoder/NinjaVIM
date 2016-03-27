@@ -36,5 +36,6 @@ LoadingScreenState.prototype = {
         this.game.load.image(this.config.starSprite, this.config.starAsset);
         this.game.load.audio(this.config.smokeAudio, [this.config.smokeAudioAsset]);
         this.game.load.image(this.config.messageBox, this.config.messageBoxSprite);
+        this.game.load.image(this.config.hjklSprite, this.config.hjklAsset);
     },
 };

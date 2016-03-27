@@ -6,7 +6,7 @@ var GameConfig = {
     numberOfRows : 10,
     numberOfColumns : 10,
 
-    backgroundColor: '#DDDDDD',
+    backgroundColor: '#47B564',
 
     progressBar: 'progress_bar',
     progressBarAsset: 'assets/progress_bar.png',
@@ -32,7 +32,10 @@ var GameConfig = {
 
     coinSprite : 'coin',
     coinAsset : 'assets/coin.png',
-    coinAssetJson : 'assets/coin.json'
+    coinAssetJson : 'assets/coin.json',
+
+    hjklSprite : 'hjkl',
+    hjklAsset : 'assets/hjkl.png'
 
 };
 
