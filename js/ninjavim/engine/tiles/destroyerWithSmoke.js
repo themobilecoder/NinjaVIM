@@ -16,11 +16,12 @@ DestroyerWithSmoke.prototype = {
         var smokeSprite = this.game.add.sprite(xLocation, yLocation, this.config.smokeSprite);
         smokeSprite.width = this.width;
         smokeSprite.height = this.height;
-        smokeSprite.animations.add('smoke');
+        smokeSprite.anchor.set(0.5);
+        smokeSprite.animations.add(this.config.smokeSprite);
         smokeSprite.animations.currentAnim.onComplete.add(function () {
             smokeSprite.destroy();
         });
-        smokeSprite.animations.play('smoke', 20, false);
+        smokeSprite.animations.play(this.config.smokeSprite, 20, false);
     },
     _playSmokeSound: function () {
         this.game.add.audio(this.config.smokeAudio).play();

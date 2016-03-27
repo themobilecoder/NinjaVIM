@@ -69,8 +69,8 @@ CursorManager.prototype = {
         this.cursor.height = this.staticCursorHeight;
     },
     _animateCursor: function () {
-        this.cursor.animations.add('ninja');
-        this.cursor.animations.play('ninja', 10, true);
+        this.cursor.animations.add(this.config.cursorSprite);
+        this.cursor.animations.play(this.config.cursorSprite, 10, true);
     },
     _isCoordinateOutOfBorder: function(column, row) {
         return (column < 0

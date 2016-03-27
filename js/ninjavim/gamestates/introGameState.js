@@ -21,7 +21,7 @@ IntroGameState.prototype = {
     },
     create: function () {
         this._initializeVimContext();
-        this._generateStarsToCollect();
+        this._generateSpritesToCollect();
         this.cursorManager.createSprite(this.tileWidth, this.tileHeight);
         this.startGameTime();
 
@@ -46,11 +46,11 @@ IntroGameState.prototype = {
             this.tilesSpriteManager.destroySprite(cursorColumn, cursorRow, this.destroyerWithSmoke);
         }
     },
-    _generateStarsToCollect: function () {
-        var starTileBuilder = new StarTileBuilder(this.game, this.config);
+    _generateSpritesToCollect: function () {
+        var tileBuilder = new CoinTileBuilder(this.game, this.config);
         for (var col = 0; col < this.config.numberOfColumns; ++col) {
             for (var row = 0; row < this.config.numberOfRows; ++row) {
-                this.tilesSpriteManager.buildSprite(col, row, starTileBuilder);
+                this.tilesSpriteManager.buildSprite(col, row, tileBuilder);
             }
         }
     },

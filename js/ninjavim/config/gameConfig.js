@@ -28,7 +28,12 @@ var GameConfig = {
     smokeAsset : 'assets/smoke.png',
     smokeAssetJson : 'assets/smoke.json',
     smokeAudio : 'smoke',
-    smokeAudioAsset : 'assets/smoke.mp3'
+    smokeAudioAsset : 'assets/smoke.mp3',
+
+    coinSprite : 'coin',
+    coinAsset : 'assets/coin.png',
+    coinAssetJson : 'assets/coin.json'
+
 };
 
 
