@@ -57,6 +57,19 @@ describe("Tile Sprite Manager using a Sprite Builder", function() {
         expect(tilesSpriteManager.getSpriteFromLocation(0, 0)).not.toBeUndefined();
     });
 
+    it("should not save a sprite when using a build without saving function", function() {
+        var tilesSpriteManager = new TilesSpriteManager(20, 20);
+
+        var builder = jasmine.createSpyObj('builder', ['build', 'withLocation']);
+        builder.build.and.returnValue('');
+
+        expect(tilesSpriteManager.getSpriteFromLocation(0, 0)).toBeUndefined();
+        tilesSpriteManager.buildSpriteWithoutSaving(0, 0, builder);
+
+        expect(builder.build).toHaveBeenCalled();
+        expect(tilesSpriteManager.getSpriteFromLocation(0, 0)).toBeUndefined();
+    })
+
 });
 
 describe("Tile Sprite Manager deleting a sprite", function() {

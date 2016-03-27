@@ -47,6 +47,14 @@ IntroGameState.prototype = {
             this.tilesSpriteManager.destroySprite(cursorColumn, cursorRow, this.destroyerWithSmoke);
         }
     },
+    _generateGrass: function () {
+        var grassTileBuilder = new GrassTileBuilder(this.game, this.config);
+        for (var col = 0; col < this.config.numberOfColumns; ++col) {
+            for (var row = 0; row < this.config.numberOfRows; ++row) {
+                this.tilesSpriteManager.buildSpriteWithoutSaving(col, row, grassTileBuilder);
+            }
+        }
+    },
     _generateSpritesToCollect: function () {
         var tileBuilder = new CoinTileBuilder(this.game, this.config);
         for (var col = 0; col < this.config.numberOfColumns; ++col) {
@@ -66,9 +74,10 @@ IntroGameState.prototype = {
         }
     },
     _prepareBackground : function() {
+        this._generateGrass();
         var hjkl = this.game.add.sprite(this.game.world.centerX, this.game.world.centerY, this.config.hjklSprite);
         hjkl.anchor.set(0.5);
-        hjkl.alpha = 0.7;
+        hjkl.alpha = 0.4;
     },
     _showMessageBox: function () {
         var messageBox = this.game.add.sprite(this.game.world.centerX, this.game.world.centerY - 100, 'message_box');

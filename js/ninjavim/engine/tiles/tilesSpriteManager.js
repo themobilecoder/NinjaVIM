@@ -22,6 +22,13 @@ TilesSpriteManager.prototype = {
         builder.withLocation(column, row);
         this.tiles[key] = builder.build();
     },
+    buildSpriteWithoutSaving : function(column, row, builder) {
+        if (column < 0 || column >= this.maxColumns || row < 0 || row >= this.maxRows) {
+            return;
+        }
+        builder.withLocation(column, row);
+        builder.build();
+    },
     destroySprite : function(column, row, destroyer) {
         var key = this.helper.getKey(column, row);
         var currentSpriteInTile = this.tiles[key];

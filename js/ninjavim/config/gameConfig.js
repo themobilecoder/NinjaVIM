@@ -35,7 +35,10 @@ var GameConfig = {
     coinAssetJson : 'assets/coin.json',
 
     hjklSprite : 'hjkl',
-    hjklAsset : 'assets/hjkl.png'
+    hjklAsset : 'assets/hjkl.png',
+
+    grassSprite : 'grass',
+    grassAsset : 'assets/wild_grass.png',
 
 };
 
