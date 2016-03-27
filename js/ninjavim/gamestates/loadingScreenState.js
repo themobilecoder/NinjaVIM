@@ -8,6 +8,7 @@ LoadingScreenState.prototype = {
         console.log('Pre loading larger assets..');
         this._addLoadingText();
         this._addLoadingBar();
+        this._showLoadingBarAnimationWhenLoadingAssets();
         this._preloadGameAssets();
     },
     create : function() {
@@ -20,11 +21,12 @@ LoadingScreenState.prototype = {
         loadingText.addColor("#FFFFFF", 0);
         loadingText.anchor.setTo(0.5);
     },
-
     _addLoadingBar: function () {
         this.preloadBar = this.game.add.sprite(this.game.world.centerX, this.game.world.centerY, this.config.progressBar);
         this.preloadBar.anchor.setTo(0.5);
         this.preloadBar.height = 50;
+    },
+    _showLoadingBarAnimationWhenLoadingAssets: function () {
         this.game.load.setPreloadSprite(this.preloadBar);
     },
     _preloadGameAssets: function () {
