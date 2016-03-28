@@ -35,6 +35,7 @@ LoadingScreenState.prototype = {
         this.game.load.atlasJSONHash(this.config.coinSprite, this.config.coinAsset, this.config.coinAssetJson);
         this.game.load.image(this.config.starSprite, this.config.starAsset);
         this.game.load.audio(this.config.smokeAudio, [this.config.smokeAudioAsset]);
+        this.game.load.audio(this.config.coinAudio, [this.config.coinAudioAsset]);
         this.game.load.image(this.config.messageBox, this.config.messageBoxSprite);
         this.game.load.image(this.config.hjklSprite, this.config.hjklAsset);
         this.game.load.image(this.config.grassSprite, this.config.grassAsset);

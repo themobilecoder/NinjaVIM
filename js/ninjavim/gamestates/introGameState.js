@@ -15,7 +15,7 @@ IntroGameState.prototype = {
         this.tilesCharacterManager = new TilesCharacterManager(this.numberOfRows, this.numberOfColumns);
         this.vimContext = new VimContext(this.cursorManager, this.tilesCharacterManager, this.keyboardHandlerManager);
         this.tilesSpriteManager = new TilesSpriteManager(this.config.numberOfColumns, this.config.numberOfRows);
-        this.destroyerWithSmoke = new DestroyerWithSmoke(this.game, this.config);
+        this.destroyerWithCoinSoundEffect = new DestroyerWithCoinSoundEffect(this.game, this.config);
 
         this.game.stage.backgroundColor = this.config.backgroundColor;
     },
@@ -44,7 +44,7 @@ IntroGameState.prototype = {
         var cursorColumn = this.cursorManager.getCursorLocation().column;
         var cursorRow = this.cursorManager.getCursorLocation().row;
         if (this.tilesSpriteManager.getSpriteFromLocation(cursorColumn, cursorRow)) {
-            this.tilesSpriteManager.destroySprite(cursorColumn, cursorRow, this.destroyerWithSmoke);
+            this.tilesSpriteManager.destroySprite(cursorColumn, cursorRow, this.destroyerWithCoinSoundEffect);
         }
     },
     _generateGrass: function () {
@@ -59,6 +59,7 @@ IntroGameState.prototype = {
         var tileBuilder = new CoinTileBuilder(this.game, this.config);
         for (var col = 0; col < this.config.numberOfColumns; ++col) {
             for (var row = 0; row < this.config.numberOfRows; ++row) {
+                if (col == 0 && row == 0) continue;
                 this.tilesSpriteManager.buildSprite(col, row, tileBuilder);
             }
         }

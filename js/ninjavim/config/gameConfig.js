@@ -33,6 +33,8 @@ var GameConfig = {
     coinSprite : 'coin',
     coinAsset : 'assets/coin.png',
     coinAssetJson : 'assets/coin.json',
+    coinAudio : 'coin',
+    coinAudioAsset : 'assets/coin_sound.wav',
 
     hjklSprite : 'hjkl',
     hjklAsset : 'assets/hjkl.png',
