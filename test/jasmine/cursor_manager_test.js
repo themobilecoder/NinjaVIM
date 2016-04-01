@@ -1,9 +1,9 @@
-describe('Cursor Manager', function() {
+describe('Cursor Location Manager', function() {
     var cursorManager;
     beforeEach(function() {
         var numberOfColumns = 20;
         var numberOfRows = 20;
-        cursorManager = new CursorManager(null, numberOfColumns, numberOfRows)
+        cursorManager = new CursorLocationManager(numberOfColumns, numberOfRows)
     });
 
     it('should be initialized properly', function() {

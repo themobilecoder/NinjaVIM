@@ -1,14 +1,19 @@
 describe('VimContext cursor management', function() {
 
     it('should update the location of cursor', function() {
-        var cursorManagerStub = jasmine.createSpyObj('cursorManager', ['moveCursorTo', 'getCursorLocation']);
-        cursorManagerStub.getCursorLocation.and.returnValue({column: '5', row: '6'});
+        var cursorLocationManagerStub = jasmine.createSpyObj('cursorLocationManager', ['moveCursorTo', 'getCursorLocation']);
+        var cursorSpriteManagerStub = jasmine.createSpyObj('cursorSpriteManager', ['moveCursorTo']);
 
-        var vimCursor = new VimContext(cursorManagerStub, null, null);
+        cursorLocationManagerStub.getCursorLocation.and.returnValue({column: '5', row: '6'});
 
-        vimCursor.moveCursorTo(5, 6);
-        expect(cursorManagerStub.moveCursorTo.calls.any()).toEqual(true);
-        expect(vimCursor.getCursorLocation()).toEqual({column: '5', row: '6'});
+        var vimContext = new VimContext(cursorLocationManagerStub, cursorSpriteManagerStub, null, null);
+
+        vimContext.moveCursorTo(5, 6);
+
+        expect(cursorLocationManagerStub.moveCursorTo).toHaveBeenCalledWith(5, 6);
+        expect(cursorSpriteManagerStub.moveCursorTo).toHaveBeenCalledWith(5, 6);
+
+        expect(vimContext.getCursorLocation()).toEqual({column: '5', row: '6'});
     });
 
 });

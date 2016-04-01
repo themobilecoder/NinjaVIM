@@ -1,10 +1,11 @@
 var NinjaVim = NinjaVim || {};
 
-function VimContext(cursorManager, tilesCharacterManager, keyboardHandlerManager) {
-    this.cursorManager = {};
+function VimContext(cursorLocationManager, cursorSpriteManager, tilesCharacterManager, keyboardHandlerManager) {
+    this.cursorLocationManager = {};
     this.vimMode = VimContext.MODE.UNKNOWN;
     this.keyboardHandlerManager = keyboardHandlerManager;
-    this.cursorManager = cursorManager;
+    this.cursorLocationManager = cursorLocationManager;
+    this.cursorSpriteManager = cursorSpriteManager;
     this.tilesCharacterManager = tilesCharacterManager;
     this.shiftIsDown = false;
 }
@@ -24,31 +25,36 @@ VimContext.prototype = {
         this.shiftIsDown = false;
     },
     getCursorLocation: function() {
-        return this.cursorManager.getCursorLocation();
+        return this.cursorLocationManager.getCursorLocation();
     },
     moveCursorTo: function(column, row) {
-        this.cursorManager.moveCursorTo(column, row);
+        this.cursorLocationManager.moveCursorTo(column, row);
+        this.cursorSpriteManager.moveCursorTo(column, row);
     },
     moveCursorUp: function() {
-        this.cursorManager.moveCursorUp();
+        this.cursorLocationManager.moveCursorUp();
+        this.cursorSpriteManager.moveCursorTo(this.cursorLocationManager.getCursorLocation().column, this.cursorLocationManager.getCursorLocation().row);
     },
     moveCursorDown: function() {
-        this.cursorManager.moveCursorDown();
+        this.cursorLocationManager.moveCursorDown();
+        this.cursorSpriteManager.moveCursorTo(this.cursorLocationManager.getCursorLocation().column, this.cursorLocationManager.getCursorLocation().row);
     },
     moveCursorLeft: function() {
-        this.cursorManager.moveCursorLeft();
+        this.cursorLocationManager.moveCursorLeft();
+        this.cursorSpriteManager.moveCursorTo(this.cursorLocationManager.getCursorLocation().column, this.cursorLocationManager.getCursorLocation().row);
     },
     moveCursorRight: function() {
-        this.cursorManager.moveCursorRight();
+        this.cursorLocationManager.moveCursorRight();
+        this.cursorSpriteManager.moveCursorTo(this.cursorLocationManager.getCursorLocation().column, this.cursorLocationManager.getCursorLocation().row);
     },
     setCharacterToCurrentCursorLocation: function(character) {
-        var column = this.cursorManager.getCursorLocation().column;
-        var row = this.cursorManager.getCursorLocation().row;
+        var column = this.cursorLocationManager.getCursorLocation().column;
+        var row = this.cursorLocationManager.getCursorLocation().row;
         this.tilesCharacterManager.setCharacterToTile(character, column, row);
     },
     getCharacterFromCurrentCursorLocation: function() {
-        var column = this.cursorManager.getCursorLocation().column;
-        var row = this.cursorManager.getCursorLocation().row;
+        var column = this.cursorLocationManager.getCursorLocation().column;
+        var row = this.cursorLocationManager.getCursorLocation().row;
         return this.tilesCharacterManager.getCharacterFromLocation(column, row);
     },
     getCharacterFromCursorLocation: function(cursorLocation) {
@@ -57,7 +63,7 @@ VimContext.prototype = {
         return this.tilesCharacterManager.getCharacterFromLocation(column, row);
     },
     getRightBorder: function() {
-        return this.cursorManager.getRightBorder();
+        return this.cursorLocationManager.getRightBorder();
     },
     isShiftDown: function() {
         return this.shiftIsDown;

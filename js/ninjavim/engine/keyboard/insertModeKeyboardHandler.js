@@ -43,7 +43,6 @@ InsertModeKeyboardHandler.prototype = {
         this.keyHandlers[KeyboardHandlerManager.KEYS.J_KEY] = function () {
             var command;
             if (this.vimContext.isShiftDown()) {
-                console.log('sdadsq');
                 command = new InsertCharacterCommand(this.vimContext, 'J');
             } else {
                 command = new InsertCharacterCommand(this.vimContext, 'j');

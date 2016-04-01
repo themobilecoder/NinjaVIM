@@ -10,10 +10,10 @@ IntroGameState.prototype = {
         this.numberOfRows = this.config.numberOfRows;
         this.tileWidth = this.game.world.width / this.numberOfColumns;
         this.tileHeight = this.game.world.height / this.numberOfRows;
-        this.cursorManager = new CursorManager(this.game, this.numberOfColumns, this.numberOfRows, this.config);
+        this.cursorLocationManager = new CursorLocationManager(this.numberOfColumns, this.numberOfRows, this.config);
+        this.cursorSpriteManager = new CursorSpriteManager(this.game, this.config);
         this.keyboardHandlerManager = new KeyboardHandlerManager(this.context, new PhaserKeyboard(this.game));
         this.tilesCharacterManager = new TilesCharacterManager(this.numberOfRows, this.numberOfColumns);
-        this.vimContext = new VimContext(this.cursorManager, this.tilesCharacterManager, this.keyboardHandlerManager);
         this.tilesSpriteManager = new TilesSpriteManager(this.config.numberOfColumns, this.config.numberOfRows);
         this.destroyerWithCoinSoundEffect = new DestroyerWithCoinSoundEffect(this.game, this.config);
 
@@ -23,7 +23,7 @@ IntroGameState.prototype = {
         this._initializeVimContext();
         this._prepareBackground();
         this._generateSpritesToCollect();
-        this.cursorManager.createSprite(this.tileWidth, this.tileHeight);
+        this.cursorSpriteManager.createSprite(this.tileWidth, this.tileHeight);
         this.startGameTime();
 
         this.gameIsFinished = false;
@@ -34,15 +34,15 @@ IntroGameState.prototype = {
         this._finishGameProcessor();
     },
     _initializeVimContext: function() {
-        this.vimContext = new VimContext(this.cursorManager, this.tilesCharacterManager, this.keyboardHandlerManager);
+        this.vimContext = new VimContext(this.cursorLocationManager, this.cursorSpriteManager, this.tilesCharacterManager, this.keyboardHandlerManager);
         this.vimContext.setKeyboardHandler(new NormalModeKeyboardHandler(this.vimContext));
     },
     _shiftButtonProcessor: function () {
         this.keyboardHandlerManager.isShiftDown ? this.vimContext.setShiftPressed() : this.vimContext.setShiftReleased();
     },
     _cursorAndStarCollisionProcessor: function () {
-        var cursorColumn = this.cursorManager.getCursorLocation().column;
-        var cursorRow = this.cursorManager.getCursorLocation().row;
+        var cursorColumn = this.cursorLocationManager.getCursorLocation().column;
+        var cursorRow = this.cursorLocationManager.getCursorLocation().row;
         if (this.tilesSpriteManager.getSpriteFromLocation(cursorColumn, cursorRow)) {
             this.tilesSpriteManager.destroySprite(cursorColumn, cursorRow, this.destroyerWithCoinSoundEffect);
         }
