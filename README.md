@@ -1,6 +1,9 @@
 # ninjavim
 Have fun while learning VIM
 
+##Try It!
+* http://rafaelph.github.io/ninjavim/
+
 ##Resources Used
 * Testing - https://karma-runner.github.io
 * Ninja Sprite - http://kwelfury.deviantart.com/art/Volt-sprite-sheet-332424008
